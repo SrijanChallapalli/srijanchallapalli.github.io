@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0806" />
 <title>OPERATOR // Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,8 +22,8 @@
   --magenta:#ff4da6;
   --violet:#a24bff;
   --ink:#efe9df;
-  --ink-dim:#9a938a;
-  --menu-off:#6f6a62;
+  --ink-dim:#b0a89d;
+  --menu-off:#938c82;
   --panel:rgba(10,8,6,.92);
   --line:rgba(255,255,255,.14);
   --cond:'Saira Condensed',Impact,sans-serif;
@@ -40,6 +41,10 @@ a{color:var(--orange-hi);text-decoration:none}
 button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
 img{max-width:100%}
 ::selection{background:var(--orange);color:#160b02}
+/* visible keyboard focus for all interactive elements */
+:focus-visible{outline:2px solid var(--orange-hi);outline-offset:3px;border-radius:2px}
+/* only remove default outline where we provide our own focus-visible ring */
+a:focus:not(:focus-visible),button:focus:not(:focus-visible){outline:none}
 
 /* ---------- cinematic background ---------- */
 #stage{position:fixed;inset:0;overflow:hidden}
@@ -105,7 +110,10 @@ img{max-width:100%}
 
 /* ---------- left content ---------- */
 .left{position:absolute;left:0;top:0;bottom:0;width:56%;z-index:3;
-  padding:clamp(28px,5vw,64px);display:flex;flex-direction:column;
+  padding:clamp(28px,5vw,64px);
+  padding-top:max(clamp(28px,5vw,64px),env(safe-area-inset-top));
+  padding-bottom:max(clamp(28px,5vw,64px),env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;
   opacity:0;pointer-events:none;transition:opacity .6s ease .1s}
 .left.reveal{opacity:1;pointer-events:auto}
 .mask-left{position:absolute;left:0;top:0;bottom:0;width:60%;z-index:1;pointer-events:none;
@@ -137,22 +145,33 @@ img{max-width:100%}
 
 /* menu */
 .menu{list-style:none;margin:0;padding:0}
-.menu-item{position:relative;display:block;width:min(420px,80%);text-align:left;
+/* dark plate per item — Black Ops III style */
+.menu-item{position:relative;display:block;width:min(420px,90%);text-align:left;
   font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.04em;
-  font-size:clamp(24px,3.4vw,40px);line-height:1.16;color:var(--menu-off);
-  padding:6px 10px 6px 14px;transition:color .12s,background .12s;
-  text-shadow:0 2px 6px rgba(0,0,0,.7);opacity:0;transform:translateX(-14px)}
+  font-size:clamp(24px,3.4vw,40px);line-height:1;color:#dcd6cd;
+  padding:12px 18px;margin-bottom:11px;border-radius:5px;
+  background:linear-gradient(180deg,rgba(24,19,14,.82),rgba(9,7,5,.82));
+  border:1px solid rgba(255,255,255,.05);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 3px 10px rgba(0,0,0,.4);
+  text-shadow:0 2px 6px rgba(0,0,0,.75);
+  transition:color .14s,background .14s,box-shadow .2s,transform .14s;
+  opacity:0;transform:translateX(-14px)}
 .menu-item .sub{display:block;font-family:var(--sans);font-weight:400;letter-spacing:.14em;
-  font-size:12px;color:var(--ink-dim);text-transform:uppercase;margin-top:-2px;opacity:0;
+  font-size:12px;color:var(--ink-dim);text-transform:uppercase;margin-top:1px;opacity:0;
   max-height:0;transition:.2s;overflow:hidden}
 .menu.in .menu-item{animation:slidein .5s forwards}
-.menu-item.sel{color:var(--orange-hi);background:linear-gradient(90deg,rgba(255,138,30,.16),rgba(255,138,30,.02) 60%,transparent)}
-.menu-item.sel .sub{opacity:1;max-height:22px;color:var(--orange)}
-.menu-item.sel::before{content:"►";position:absolute;left:-22px;top:8px;font-size:16px;color:var(--orange);
-  text-shadow:0 0 10px var(--orange)}
-.menu-item.sel::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;
-  background:linear-gradient(90deg,var(--orange-deep),var(--orange),var(--magenta),var(--violet),var(--blue));
-  box-shadow:0 0 14px rgba(255,138,30,.7);border-radius:2px}
+/* selected / hovered = bright glowing plate with dark knocked-out text */
+.menu-item.sel{color:#2a1400;transform:translateX(6px);
+  background:linear-gradient(180deg,#ffd863,#ff9a2b 46%,#ff5e00);
+  border-color:rgba(255,190,90,.85);
+  box-shadow:0 0 30px 3px rgba(255,125,15,.6),
+             38px 0 55px -12px rgba(180,70,255,.6),
+             68px 0 75px -20px rgba(60,160,255,.45),
+             inset 0 1px 0 rgba(255,240,200,.5);
+  text-shadow:0 1px 0 rgba(255,225,160,.6)}
+.menu-item.sel .sub{opacity:1;max-height:22px;color:rgba(52,26,0,.85)}
+.menu-item.sel::before{content:"►";position:absolute;left:-20px;top:50%;transform:translateY(-50%);
+  font-size:15px;color:var(--orange);text-shadow:0 0 10px var(--orange)}
 
 /* footer status */
 .status{margin-top:26px;font-family:var(--cond);font-weight:600;letter-spacing:.1em;
@@ -203,7 +222,7 @@ img{max-width:100%}
    PANEL OVERLAY
    ============================================================ */
 #overlay{position:fixed;inset:0;z-index:100;display:none;background:rgba(4,3,2,.78);
-  backdrop-filter:blur(4px);padding:4vh 4vw}
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);padding:4vh 4vw}
 #overlay.active{display:flex;align-items:center;justify-content:center}
 .panel{width:min(1000px,96vw);max-height:90vh;background:var(--panel);
   border:1px solid rgba(255,138,30,.5);box-shadow:0 0 70px rgba(255,120,20,.18);
@@ -310,19 +329,57 @@ h3.sec{font-family:var(--cond);letter-spacing:.1em;text-transform:uppercase;colo
   .hero{width:100%;opacity:.28}
   .left{width:100%}
   .mask-left{width:100%;background:linear-gradient(180deg,rgba(10,8,6,.75),var(--bg))}
-  .menu-item{width:90%}
+  .menu-item{width:100%;max-width:none}
   .about,.proj-wrap{grid-template-columns:1fr}
-  .proj-list{display:flex;overflow:auto;border-right:none;border-bottom:1px solid rgba(255,138,30,.25)}
+  .proj-list{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;border-right:none;border-bottom:1px solid rgba(255,138,30,.25)}
   .proj-item{min-width:170px}
+  .proj-detail{padding:16px 4px 4px}
+  /* full-screen panels on small screens */
+  #overlay{padding:0}
+  .panel{width:100vw;max-height:100vh;height:100%;border:none}
+  .panel::before,.panel::after{display:none}
+  .panel-body{padding:20px 18px calc(20px + env(safe-area-inset-bottom))}
+  /* start bar stacks and stays reachable */
+  .startbar{flex-direction:column;gap:14px;align-items:stretch;text-align:center;
+    padding:16px 18px calc(16px + env(safe-area-inset-bottom))}
+  .sb-left{justify-content:center}
+  .sb-right{justify-content:center;flex-wrap:wrap}
+  .start-logo{bottom:auto;top:38%}
+  .about{gap:18px}
+  .about .badge{width:120px;justify-self:center}
+}
+@media(max-width:520px){
+  .left{padding-left:20px;padding-right:20px}
+  .title{font-size:clamp(44px,15vw,72px)}
+  .menu-item{font-size:clamp(22px,7vw,30px);padding:10px 10px 10px 14px}
+  .menu-item.sel::before{left:-16px}
+  .corner.tr{font-size:11px;top:10px;right:12px}
+  .panel-head{padding:14px 16px}
+  .panel-head h2{font-size:22px}
+  .switch{width:100%;justify-content:center}
+  .tech-row .tech,.chip{font-size:13px}
+}
+/* touch devices: hover-based lift/zoom effects don't make sense */
+@media(hover:none){
+  .chip:hover,.int-card:hover{transform:none}
+  .int-card:hover img{transform:none}
+}
+/* respect users who prefer reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .smoke,.ring,.bar-l,.install .fill::after{animation:none!important}
+  /* ensure content that fades/slides in is visible without animation */
+  .install,.kicker,.title,.subtitle,.status,.menu-item{opacity:1!important;transform:none!important}
 }
 </style>
 </head>
 <body>
 <div id="stage">
-  <div class="bg-base"></div>
-  <div class="bg-photo" id="bgPhoto"></div>
-  <div class="bg-shade"></div>
-  <canvas id="embers"></canvas>
+  <div class="bg-base" aria-hidden="true"></div>
+  <div class="bg-photo" id="bgPhoto" aria-hidden="true"></div>
+  <div class="bg-shade" aria-hidden="true"></div>
+  <canvas id="embers" aria-hidden="true"></canvas>
 
   <!-- LEFT UI -->
   <div class="left">
@@ -337,7 +394,7 @@ h3.sec{font-family:var(--cond);letter-spacing:.1em;text-transform:uppercase;colo
       <div class="subtitle" id="subtitle"></div>
     </div>
 
-    <ul class="menu" id="menu"></ul>
+    <nav aria-label="Portfolio sections"><ul class="menu" id="menu"></ul></nav>
 
     <div class="status" id="statusBox"></div>
   </div>
@@ -353,27 +410,27 @@ h3.sec{font-family:var(--cond);letter-spacing:.1em;text-transform:uppercase;colo
     <div class="n" id="startName">OPERATOR</div>
   </div>
   <div class="startbar">
-    <div class="sb-left"><span class="pad">↵</span><span class="pulse">Press Enter to Start</span></div>
+    <div class="sb-left"><span class="pad" aria-hidden="true">↵</span><span class="pulse" id="startPrompt">Press Enter to Start</span></div>
     <div class="sb-right">
       <span>Signed in: <b id="signedName">—</b></span>
-      <button class="switch" id="switchBtn" autofocus>⧉ Enter</button>
+      <button type="button" class="switch" id="switchBtn" aria-label="Enter portfolio" autofocus>⧉ Enter</button>
     </div>
   </div>
 </div>
 
 <!-- PANEL -->
 <div id="overlay">
-  <div class="panel">
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle" tabindex="-1">
     <div class="panel-head">
       <div><span class="no" id="panelNo">01</span> &nbsp; <h2 id="panelTitle" style="display:inline">SECTION</h2></div>
-      <button class="closebtn" id="closeBtn">◄ BACK  [ESC]</button>
+      <button type="button" class="closebtn" id="closeBtn" aria-label="Close section">◄ BACK  [ESC]</button>
     </div>
     <div class="panel-body" id="panelBody"></div>
   </div>
 </div>
 
-<div class="vignette"></div>
-<div class="grain"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 
 <script>
 /* ============================================================
@@ -520,6 +577,13 @@ $('#startKicker').textContent = CONFIG.kicker;
 $('#signedName').textContent = CONFIG.name;
 $('#statusBox').innerHTML = CONFIG.status.map(([k,v])=>`<div class="row">${k}: <b>${v}</b></div>`).join('');
 
+/* touch devices have no Enter key — adjust the start prompt copy */
+const IS_TOUCH = !!(window.matchMedia && window.matchMedia('(pointer:coarse)').matches);
+if(IS_TOUCH){
+  const sp=$('#startPrompt'); if(sp) sp.textContent='Tap to Start';
+  const sw=$('#switchBtn'); if(sw) sw.textContent='⧉ Tap';
+}
+
 /* background image */
 if(CONFIG.backgroundImage){
   $('#bgPhoto').style.backgroundImage=`url("${CONFIG.backgroundImage}")`;
@@ -528,11 +592,16 @@ if(CONFIG.backgroundImage){
 /* build menu */
 const menuEl=$('#menu');
 SECTIONS.forEach(([id,label,sub],i)=>{
-  const li=document.createElement('button');
-  li.className='menu-item'; li.dataset.id=id; li.style.animationDelay=(0.4+i*0.08)+'s';
-  li.innerHTML=`${label}<span class="sub">${sub}</span>`;
-  li.addEventListener('mouseenter',()=>select(i));
-  li.addEventListener('click',()=>open(id));
+  const li=document.createElement('li');
+  const btn=document.createElement('button');
+  btn.type='button';
+  btn.className='menu-item'; btn.dataset.id=id; btn.style.animationDelay=(0.4+i*0.08)+'s';
+  btn.setAttribute('aria-label',`${label} — ${sub}`);
+  btn.innerHTML=`${label}<span class="sub">${sub}</span>`;
+  btn.addEventListener('mouseenter',()=>select(i));
+  btn.addEventListener('focus',()=>select(i));
+  btn.addEventListener('click',()=>open(id));
+  li.appendChild(btn);
   menuEl.appendChild(li);
 });
 
@@ -610,6 +679,7 @@ function tl(e){return `<div class="tl-item">
   <div class="org">${e.org}</div>
   ${e.points&&e.points.length?`<ul>${e.points.map(p=>`<li>${p}</li>`).join('')}</ul>`:''}</div>`;}
 
+let lastFocused=null;
 function open(id){
   const idx=SECTIONS.findIndex(s=>s[0]===id);
   const [ , label ]=SECTIONS[idx];
@@ -617,7 +687,10 @@ function open(id){
   $('#panelNo').textContent=String(idx+1).padStart(2,'0');
   $('#panelTitle').textContent=label;
   $('#panelBody').innerHTML=R[id]();
+  lastFocused=document.activeElement;
   $('#overlay').classList.add('active');
+  /* move focus into the dialog for keyboard & screen-reader users */
+  requestAnimationFrame(()=>{ const c=$('#closeBtn'); if(c) c.focus(); });
 
   if(id==='projects'){
     renderProj(0);
@@ -632,9 +705,23 @@ function renderProj(i){const p=CONFIG.projects[i];
     <p>${p.blurb}</p>
     <div class="tech-row">${p.tech.map(t=>`<span class="tech">${t}</span>`).join('')}</div>
     <div class="proj-links">${p.links.map(([l,u])=>`<a href="${u}" ${u==='#'?'':'target="_blank" rel="noopener"'}>${l} ▸</a>`).join('')}</div>`;}
-function close(){$('#overlay').classList.remove('active');}
+function close(){
+  $('#overlay').classList.remove('active');
+  /* restore focus to whatever opened the panel */
+  if(lastFocused&&document.contains(lastFocused)){ try{lastFocused.focus();}catch(e){} }
+}
 $('#closeBtn').addEventListener('click',close);
 $('#overlay').addEventListener('click',e=>{if(e.target.id==='overlay')close();});
+/* keep Tab focus inside the open dialog */
+$('#overlay').addEventListener('keydown',e=>{
+  if(e.key!=='Tab')return;
+  const f=$$('#overlay a[href],#overlay button:not([disabled]),#overlay [tabindex]:not([tabindex="-1"])')
+    .filter(el=>el.offsetParent!==null||el===document.activeElement);
+  if(!f.length)return;
+  const first=f[0],last=f[f.length-1];
+  if(e.shiftKey&&document.activeElement===first){last.focus();e.preventDefault();}
+  else if(!e.shiftKey&&document.activeElement===last){first.focus();e.preventDefault();}
+});
 
 /* keyboard */
 document.addEventListener('keydown',e=>{
@@ -650,10 +737,10 @@ function tick(){$('#clock').textContent=new Date().toLocaleTimeString('en-GB');}
 setInterval(tick,1000);tick();
 
 /* ---- embers ---- */
+const REDUCE_MOTION = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches);
 const cv=$('#embers'),cx=cv.getContext('2d');let W,H,parts=[];
 function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
 resize();addEventListener('resize',resize);
-for(let i=0;i<70;i++)parts.push(newEmber(true));
 function newEmber(init){return{x:W*0.45+Math.random()*W*0.6,y:init?Math.random()*H:H+10,
   r:Math.random()*1.8+0.4,vy:-(Math.random()*0.5+0.15),vx:(Math.random()-0.5)*0.3,
   a:Math.random()*0.6+0.2,tw:Math.random()*0.04+0.01,t:Math.random()*6};}
@@ -665,7 +752,15 @@ function loop(){cx.clearRect(0,0,W,H);
     cx.shadowBlur=8;cx.shadowColor='rgba(255,120,20,.8)';cx.fill();
     if(p.y<-10||p.x<W*0.3)Object.assign(p,newEmber(false));}
   requestAnimationFrame(loop);}
-loop();
+if(REDUCE_MOTION){
+  /* honor reduced-motion: no animated embers */
+  cv.style.display='none';
+}else{
+  /* fewer particles on small / low-power screens */
+  const count = innerWidth < 640 ? 32 : 70;
+  for(let i=0;i<count;i++)parts.push(newEmber(true));
+  loop();
+}
 </script>
 </body>
 </html>
