@@ -1,0 +1,82 @@
+<svg viewBox="0 0 640 860" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#868c95"/>
+      <stop offset=".45" stop-color="#474c53"/>
+      <stop offset="1" stop-color="#1a1d21"/>
+    </linearGradient>
+    <linearGradient id="steelV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6f757d"/>
+      <stop offset=".5" stop-color="#383c42"/>
+      <stop offset="1" stop-color="#15171a"/>
+    </linearGradient>
+    <radialGradient id="face" cx=".5" cy=".4" r=".62">
+      <stop offset="0" stop-color="#16110b"/>
+      <stop offset="1" stop-color="#040302"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffc46b"/>
+      <stop offset="1" stop-color="#ff5e00"/>
+    </linearGradient>
+    <linearGradient id="chest" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#565b62"/>
+      <stop offset="1" stop-color="#141619"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5"/>
+    </filter>
+  </defs>
+
+  <!-- ===== TORSO ===== -->
+  <path d="M150,470 Q138,560 172,860 L468,860 Q502,560 490,470 Q470,452 408,449 L232,449 Q170,452 150,470 Z" fill="url(#chest)"/>
+  <!-- center chest plate -->
+  <path d="M250,470 Q252,600 268,860 L372,860 Q388,600 390,470 Q356,458 320,458 Q284,458 250,470 Z" fill="url(#steelV)"/>
+  <!-- plate seams -->
+  <path d="M320,466 L320,860" stroke="#080605" stroke-width="5"/>
+  <path d="M250,505 L300,542 L300,720 M390,505 L340,542 L340,720" stroke="#0b0908" stroke-width="4" opacity=".85"/>
+  <path d="M212,540 L150,556 M428,540 L490,556" stroke="#0a0807" stroke-width="4" opacity=".7"/>
+  <text x="268" y="648" font-family="Arial" font-weight="900" font-size="54" fill="#0d0b09" opacity=".85">08</text>
+  <!-- top rim light on chest -->
+  <path d="M236,455 Q320,442 404,455" stroke="url(#rim)" stroke-width="3" opacity=".5" filter="url(#soft)"/>
+
+  <!-- ===== PAULDRONS ===== -->
+  <ellipse cx="150" cy="498" rx="100" ry="88" fill="url(#steel)"/>
+  <ellipse cx="490" cy="498" rx="100" ry="88" fill="url(#steel)"/>
+  <ellipse cx="150" cy="498" rx="62" ry="54" fill="none" stroke="#0b0908" stroke-width="5" opacity=".7"/>
+  <ellipse cx="490" cy="498" rx="62" ry="54" fill="none" stroke="#0b0908" stroke-width="5" opacity=".7"/>
+  <!-- pauldron top specular -->
+  <path d="M78,470 Q110,418 190,432" stroke="#8b9099" stroke-width="4" opacity=".5" filter="url(#soft)"/>
+  <path d="M562,470 Q530,418 450,432" stroke="#6a6f77" stroke-width="4" opacity=".4" filter="url(#soft)"/>
+  <!-- inner rim glow (backlight from bars) -->
+  <path d="M228,470 Q210,510 220,556" stroke="url(#rim)" stroke-width="3.5" opacity=".55" filter="url(#soft)"/>
+  <path d="M412,470 Q430,510 420,556" stroke="url(#rim)" stroke-width="3.5" opacity=".55" filter="url(#soft)"/>
+
+  <!-- ===== NECK ===== -->
+  <rect x="286" y="356" width="68" height="118" rx="16" fill="#181209"/>
+
+  <!-- ===== HELMET ===== -->
+  <ellipse cx="320" cy="222" rx="132" ry="158" fill="url(#steel)"/>
+  <!-- dome highlight -->
+  <path d="M250,110 Q320,80 392,120" stroke="#9297a0" stroke-width="6" opacity=".45" filter="url(#soft)"/>
+  <!-- crest ridge -->
+  <path d="M320,68 Q302,220 320,382" stroke="#0c0a08" stroke-width="9" opacity=".55"/>
+  <!-- face cavity / visor -->
+  <path d="M320,120 Q224,140 216,266 Q216,350 320,392 Q424,350 424,266 Q416,140 320,120 Z" fill="url(#face)"/>
+  <!-- brow bar -->
+  <path d="M234,212 Q320,180 406,212" stroke="#070504" stroke-width="10" opacity=".95"/>
+  <!-- cheek guards -->
+  <path d="M252,300 Q286,352 320,364 Q354,352 388,300" stroke="#0a0806" stroke-width="6" opacity=".85"/>
+  <!-- helmet left rim light -->
+  <path d="M210,146 Q150,238 198,352" stroke="url(#rim)" stroke-width="4.5" opacity=".75" filter="url(#glow)"/>
+  <!-- helmet right cool edge -->
+  <path d="M430,150 Q486,240 442,350" stroke="#7a808a" stroke-width="3" opacity=".4" filter="url(#soft)"/>
+  <!-- side status light (red) -->
+  <rect x="198" y="196" width="12" height="30" rx="6" fill="#ff4a1e" filter="url(#glow)"/>
+  <!-- visor eye glow -->
+  <ellipse cx="286" cy="256" rx="10" ry="5" fill="#ff8636" opacity=".7" filter="url(#glow)"/>
+  <ellipse cx="354" cy="256" rx="10" ry="5" fill="#ff8636" opacity=".7" filter="url(#glow)"/>
+</svg>
