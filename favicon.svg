@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Srijan Challapalli">
+  <rect width="64" height="64" rx="14" fill="#0a0a0b"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#7ea2ff" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="32" y="43" text-anchor="middle" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="30" font-weight="700" fill="#f2f1ee" letter-spacing="-1">SC</text>
+</svg>

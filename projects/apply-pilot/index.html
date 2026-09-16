@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0a0b" />
+<title>Apply Pilot — Case Study · Srijan Challapalli</title>
+<meta name="description" content="Apply Pilot: an AI-powered internship discovery and application workspace. Pulls live ATS postings, structures and ranks them with explainable scoring, and prepares applications for human review — never auto-submitting." />
+<meta name="author" content="Srijan Challapalli" />
+<link rel="canonical" href="https://srijanchallapalli.com/projects/apply-pilot/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Apply Pilot — Engineering Case Study" />
+<meta property="og:description" content="AI-powered internship discovery and application workspace. Explainable ranking, human-in-the-loop review, no auto-submit." />
+<meta property="og:url" content="https://srijanchallapalli.com/projects/apply-pilot/" />
+<meta property="og:image" content="https://srijanchallapalli.com/profile.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/site.css" />
+</head>
+<body>
+<a class="skip" href="#problem">Skip to content</a>
+
+<header class="nav" data-open="false">
+  <div class="container nav-inner">
+    <a class="brand" href="/" aria-label="Srijan Challapalli — home">
+      <span class="mark" aria-hidden="true">SC</span> Srijan Challapalli
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/#work">Projects</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+      <li><span class="sep" aria-hidden="true"></span></li>
+      <li><a class="ext" href="https://github.com/SrijanChallapalli" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a class="ext" href="https://linkedin.com/in/srijan-challapalli" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="case">
+  <div class="container">
+    <a class="back-link" href="/#work"><span class="arrow" aria-hidden="true">←</span> All work</a>
+
+    <header class="case-hero reveal">
+      <p class="idx">02 <span class="cat">AI workspace · Full-stack</span></p>
+      <h1 class="title">Apply Pilot</h1>
+      <p class="one-line">An AI workspace that finds live internship postings, ranks them against your profile, and prepares applications for human review.</p>
+    </header>
+
+    <section class="meta-grid reveal" aria-label="Project metadata">
+      <div class="meta"><div class="k">Role</div><div class="v">Solo — design &amp; full-stack engineering</div></div>
+      <div class="meta"><div class="k">Timeline</div><div class="v">2025 — Present</div></div>
+      <div class="meta"><div class="k">Tech stack</div><div class="v">Next.js · TypeScript · ATS APIs · Structured parsing · Ranking</div></div>
+      <div class="meta"><div class="k">Status</div><div class="v"><span class="st"><span class="d wip"></span> In active development</span></div></div>
+    </section>
+
+    <section class="case-metrics reveal" aria-label="Key metrics">
+      <div class="m"><div class="num">~7,200</div><div class="lbl">lines of application source</div></div>
+      <div class="m"><div class="num">21</div><div class="lbl">API route handlers</div></div>
+      <div class="m"><div class="num">7</div><div class="lbl">product UI pages</div></div>
+      <div class="m"><div class="num">0</div><div class="lbl">auto-submitted applications, by design</div></div>
+    </section>
+
+    <section class="case-visual reveal">
+      <!-- REPLACE: swap .dash-body contents for a real product screenshot -->
+      <div class="visual dash">
+        <div class="dash-bar" aria-hidden="true">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="addr">applypilot.app / dashboard</span>
+        </div>
+        <div class="dash-body" aria-hidden="true">
+          <div class="dash-side">
+            <span class="s on"></span><span class="s"></span><span class="s"></span><span class="s"></span><span class="s"></span>
+          </div>
+          <div class="dash-main">
+            <div class="dash-kpis">
+              <div class="k"><div class="n">142</div><div class="l">Matched roles</div></div>
+              <div class="k"><div class="n">18</div><div class="l">In review</div></div>
+              <div class="k"><div class="n">91</div><div class="l">Top match</div></div>
+            </div>
+            <div class="dash-rows">
+              <div class="r"><span class="t"></span><span class="score">94</span><span class="pill">Review</span></div>
+              <div class="r"><span class="t"></span><span class="score">88</span><span class="pill">Ranked</span></div>
+              <div class="r"><span class="t"></span><span class="score">81</span><span class="pill">Parsed</span></div>
+              <div class="r"><span class="t"></span><span class="score">77</span><span class="pill">New</span></div>
+            </div>
+          </div>
+        </div>
+        <span class="replace-note" aria-hidden="true">Product screenshot</span>
+      </div>
+    </section>
+
+    <section class="case-section reveal" id="problem">
+      <p class="kicker">The problem</p>
+      <h2 class="h2">Finding internships is a data problem wearing a busywork costume.</h2>
+      <div class="prose">
+        <p>
+          Relevant postings are scattered across dozens of company ATS platforms, each with its own
+          format and its own API. Finding the right ones means opening tab after tab, re-reading
+          near-identical descriptions, and guessing at fit. The tedium is real, but the temptation
+          to "automate" it with a bot that mass-applies is exactly the wrong fix — it floods
+          recruiters and produces applications no human stands behind.
+        </p>
+        <p>
+          Apply Pilot treats discovery and triage as the actual problem, and keeps the human firmly
+          in the loop for everything that matters.
+        </p>
+      </div>
+    </section>
+
+    <section class="case-section reveal">
+      <p class="kicker">The system</p>
+      <h2 class="h2">A pipeline that ends at a person, not a submit button.</h2>
+      <div class="prose">
+        <p>
+          Live postings are pulled from ATS platforms, normalized into one structured schema,
+          ranked against the candidate profile with <strong>explainable scoring</strong>, and staged
+          in a review workflow. Backed by <strong>21 API route handlers</strong> across
+          <strong>7 UI pages</strong>, the whole flow is built around two hard rules:
+          <strong>it never auto-submits applications</strong>, and
+          <strong>it never invents candidate experience</strong>.
+        </p>
+      </div>
+      <div class="case-visual" style="margin-top:32px">
+        <div class="visual diagram">
+          <div class="flow" role="img" aria-label="Pipeline: ATS APIs feed live postings, which are normalized, then ranked against the profile with explainable scoring, then staged for human review; the human decides whether to submit.">
+            <div class="flow-tier"><span class="tag">Pipeline</span><span class="rule"></span></div>
+            <div class="flow-node disk"><div class="fn">ATS APIs</div><div class="fd">live postings · many formats</div></div>
+            <div class="flow-arrow"><span class="op">normalize</span></div>
+            <div class="flow-node"><div class="fn">Structured schema</div><div class="fd">one shape for every source</div></div>
+            <div class="flow-arrow"><span class="op">rank</span></div>
+            <div class="flow-node mem"><div class="fn">Explainable ranking</div><div class="fd">scored vs. profile · reasons shown</div></div>
+            <div class="flow-arrow"><span class="op">stage</span></div>
+            <div class="flow-node"><div class="fn">Human review</div><div class="fd">person decides · no auto-submit</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section reveal">
+      <p class="kicker">Technical challenges</p>
+      <h2 class="h2">The genuinely hard parts.</h2>
+      <div class="challenges">
+        <div class="challenge">
+          <div class="n">01</div>
+          <h4>Normalizing many ATS APIs</h4>
+          <p>Every ATS returns a different shape, vocabulary, and pagination model. Collapsing them into one clean, structured schema — without losing source fidelity — is most of the real work.</p>
+        </div>
+        <div class="challenge">
+          <div class="n">02</div>
+          <h4>Ranking that explains itself</h4>
+          <p>A score is only useful if you can see why. Rankings surface the signals behind them, so the candidate can trust — and override — the ordering instead of deferring to a black box.</p>
+        </div>
+        <div class="challenge">
+          <div class="n">03</div>
+          <h4>Never fabricating experience</h4>
+          <p>The system structures and matches what the candidate actually has. It prepares and organizes applications, but it does not invent skills, roles, or accomplishments to inflate fit.</p>
+        </div>
+        <div class="challenge">
+          <div class="n">04</div>
+          <h4>A safe review workflow</h4>
+          <p>Applications move through explicit review states and stop at a human decision point. There is no code path that submits on the candidate's behalf without an intentional action.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section reveal">
+      <p class="kicker">Engineering decisions</p>
+      <h2 class="h2">Choices, and what they cost.</h2>
+      <div class="decisions">
+
+        <div class="decision">
+          <div class="decision-head"><span class="n">01</span><h4>Human-in-the-loop, never auto-submit</h4></div>
+          <div class="decision-grid">
+            <div class="cell"><div class="k">Why I chose it</div><div class="v chose">Applications should be things a person actually stands behind — and it keeps recruiters from being spammed.</div></div>
+            <div class="cell"><div class="k">Alternative considered</div><div class="v">A fully automated apply bot that submits on the user's behalf.</div></div>
+            <div class="cell"><div class="k">Tradeoff</div><div class="v">Less "magic," more integrity. The product saves time on discovery and triage, not on accountability.</div></div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <div class="decision-head"><span class="n">02</span><h4>Explainable ranking over a black box</h4></div>
+          <div class="decision-grid">
+            <div class="cell"><div class="k">Why I chose it</div><div class="v chose">Users trust and correct a ranking they can see reasons for; opaque scores get ignored.</div></div>
+            <div class="cell"><div class="k">Alternative considered</div><div class="v">A single end-to-end model emitting an unexplained match score.</div></div>
+            <div class="cell"><div class="k">Tradeoff</div><div class="v">More engineering to expose signals, but the output is auditable and correctable.</div></div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <div class="decision-head"><span class="n">03</span><h4>Normalize to one schema up front</h4></div>
+          <div class="decision-grid">
+            <div class="cell"><div class="k">Why I chose it</div><div class="v chose">Everything downstream — ranking, review, UI — reads one clean shape instead of N messy ones.</div></div>
+            <div class="cell"><div class="k">Alternative considered</div><div class="v">Handling each ATS format ad hoc throughout the app.</div></div>
+            <div class="cell"><div class="k">Tradeoff</div><div class="v">A heavier ingestion layer, but far less complexity everywhere else and easy to add new sources.</div></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="case-section reveal">
+      <p class="kicker">Result</p>
+      <h2 class="h2">Where it stands.</h2>
+      <div class="prose">
+        <p>
+          Apply Pilot is in active development: <strong>~7,200 lines</strong> of application source,
+          <strong>21 API route handlers</strong>, and <strong>7 product pages</strong> spanning
+          discovery, structured parsing, explainable ranking, and the review workflow. It's a working
+          demonstration that "AI for job applications" can be genuinely useful without ever crossing
+          the lines of auto-submitting or fabricating experience.
+        </p>
+      </div>
+    </section>
+
+    <nav class="next-project reveal" aria-label="Next project">
+      <div><span class="lbl">Next project</span></div>
+      <a href="/projects/lsm/"><div class="nm">LSM Storage Engine <span class="arrow" aria-hidden="true">→</span></div></a>
+    </nav>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span class="meta">© <span data-year>2026</span> Srijan Challapalli</span>
+    <nav class="fl" aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="https://github.com/SrijanChallapalli" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/srijan-challapalli" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>
