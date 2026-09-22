@@ -95,21 +95,106 @@
       </div>
     </section>
 
-    <!-- MORE -->
-    <section class="arch-group reveal">
-      <div class="arch-group-label">More projects</div>
+    <!-- WEB3 -->
+    <section class="arch-group reveal" id="web3">
+      <div class="arch-group-label">Web3</div>
       <div class="arch">
 
         <div class="arch-row">
           <div class="arch-main">
-            <div class="arch-top"><span class="arch-name">Secretariat</span><span class="arch-tag">Web3 · ETHDenver</span></div>
+            <div class="arch-top"><span class="arch-name">Secretariat</span><span class="arch-tag">Marketplace · ETHDenver</span></div>
             <p class="arch-line">Tokenized-asset marketplace built at ETHDenver — 17 Solidity contracts, a factory/deployer split to beat the 24 KB contract-size limit, and an off-chain XGBoost valuation engine.</p>
-            <p class="arch-stack">TypeScript · Solidity · Next.js · Foundry · XGBoost</p>
+            <p class="arch-stack">Solidity · Foundry · Next.js · TypeScript · XGBoost</p>
           </div>
           <div class="arch-links">
             <a class="link-muted" href="https://github.com/SrijanChallapalli/Secretariat" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
+
+        <div class="arch-row">
+          <div class="arch-main">
+            <div class="arch-top"><span class="arch-name">Over-Collateralized Lending</span><span class="arch-tag">DeFi · SpeedRunEthereum</span></div>
+            <p class="arch-line">A lending and borrowing protocol where borrowers lock collateral to draw loans against it — with borrowing power that tracks collateral value and a liquidation path for underwater positions.</p>
+            <p class="arch-stack">Solidity · Hardhat · Next.js · Wagmi · Viem</p>
+          </div>
+          <div class="arch-links">
+            <a class="link-muted" href="https://github.com/SrijanChallapalli/challenge-over-collateralized-lending" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+
+        <div class="arch-row">
+          <div class="arch-main">
+            <div class="arch-top"><span class="arch-name">Decentralized Oracles</span><span class="arch-tag">Oracles · SpeedRunEthereum</span></div>
+            <p class="arch-line">Three oracle architectures for bringing off-chain data on-chain — whitelist, staking, and optimistic — each trading security, decentralization, and efficiency differently.</p>
+            <p class="arch-stack">Solidity · Hardhat · Next.js · Wagmi · Viem</p>
+          </div>
+          <div class="arch-links">
+            <a class="link-muted" href="https://github.com/SrijanChallapalli/challenge-oracles" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+
+        <div class="arch-row">
+          <div class="arch-main">
+            <div class="arch-top"><span class="arch-name">DEX (Constant-Product AMM)</span><span class="arch-tag">DeFi · SpeedRunEthereum</span></div>
+            <p class="arch-line">A minimal Uniswap-v2-style exchange that swaps ETH ↔ token off a constant-product curve (x·y=k), with liquidity provisioning and LP shares that earn a cut of trading fees.</p>
+            <p class="arch-stack">Solidity · Hardhat · Next.js · Wagmi · Viem</p>
+          </div>
+          <div class="arch-links">
+            <a class="link-muted" href="https://github.com/SrijanChallapalli/challenge-dex" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+
+        <div class="arch-row">
+          <div class="arch-main">
+            <div class="arch-top"><span class="arch-name">Token Vendor</span><span class="arch-tag">ERC-20 · SpeedRunEthereum</span></div>
+            <p class="arch-line">An ERC-20 token plus an unstoppable vending-machine contract that buys and sells it — a hands-on walk through the ERC-20 approve pattern and contract-to-contract calls.</p>
+            <p class="arch-stack">Solidity · OpenZeppelin · Hardhat · Next.js · Wagmi</p>
+          </div>
+          <div class="arch-links">
+            <a class="link-muted" href="https://github.com/SrijanChallapalli/challenge-token-vendor" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+
+        <div class="arch-row">
+          <div class="arch-main">
+            <div class="arch-top"><span class="arch-name">Crowdfunding dApp</span><span class="arch-tag">dApp · SpeedRunEthereum</span></div>
+            <p class="arch-line">A trustless group-funding app — backers pledge ether, funds release only if the goal is met, and everyone is refundable otherwise. Trust the code, not the other players.</p>
+            <p class="arch-stack">Solidity · Hardhat · Next.js · Wagmi · Viem</p>
+          </div>
+          <div class="arch-links">
+            <a class="link-muted" href="https://github.com/SrijanChallapalli/challenge-crowdfunding" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+
+        <div class="arch-row">
+          <div class="arch-main">
+            <div class="arch-top"><span class="arch-name">Dice Game &amp; Exploit</span><span class="arch-tag">Security · SpeedRunEthereum</span></div>
+            <p class="arch-line">A dice game seeded by block hash, then an attacker contract that predicts the "random" roll and wins every time — a concrete lesson in why on-chain randomness needs a VRF.</p>
+            <p class="arch-stack">Solidity · Hardhat · Next.js · Wagmi · Viem</p>
+          </div>
+          <div class="arch-links">
+            <a class="link-muted" href="https://github.com/SrijanChallapalli/challenge-dice-game" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+
+        <div class="arch-row">
+          <div class="arch-main">
+            <div class="arch-top"><span class="arch-name">Asset Tokenization</span><span class="arch-tag">RWA · SpeedRunEthereum</span></div>
+            <p class="arch-line">Representing and issuing tokenized assets on-chain — the token standards and deployment flow behind putting real-world value into transferable ERC tokens.</p>
+            <p class="arch-stack">Solidity · Hardhat · Next.js · Wagmi · Viem</p>
+          </div>
+          <div class="arch-links">
+            <a class="link-muted" href="https://github.com/SrijanChallapalli/challenge-tokenization" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MORE -->
+    <section class="arch-group reveal">
+      <div class="arch-group-label">More projects</div>
+      <div class="arch">
 
         <div class="arch-row">
           <div class="arch-main">
