@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="theme-color" content="#0a0a0b" />
+<meta name="theme-color" content="#0a0708" />
 <title>Srijan Challapalli — Software Engineer</title>
-<meta name="description" content="Srijan Challapalli builds and ships products — and the systems under them. AI @ Purdue University. Shipped iOS app (300+ users), an AI application workspace, and a database engine in Rust. Open to SWE and product-engineering internships." />
+<meta name="description" content="Srijan Challapalli — AI @ Purdue University. Builds and ships products and the systems under them: an iOS app with 300+ users, an AI application workspace, and a database engine in Rust. Open to SWE and product-engineering internships." />
 <meta name="author" content="Srijan Challapalli" />
 <link rel="canonical" href="https://srijanchallapalli.com/" />
 
@@ -13,14 +13,14 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Srijan Challapalli" />
 <meta property="og:title" content="Srijan Challapalli — Software Engineer" />
-<meta property="og:description" content="I build and ship products — and the systems under them. AI @ Purdue University." />
+<meta property="og:description" content="AI @ Purdue University. I build and ship products — and the systems under them." />
 <meta property="og:url" content="https://srijanchallapalli.com/" />
 <meta property="og:image" content="https://srijanchallapalli.com/profile.png" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Srijan Challapalli — Software Engineer" />
-<meta name="twitter:description" content="I build and ship products — and the systems under them. AI @ Purdue University." />
+<meta name="twitter:description" content="AI @ Purdue University. I build and ship products — and the systems under them." />
 <meta name="twitter:image" content="https://srijanchallapalli.com/profile.png" />
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -28,8 +28,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/css/site.css" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <script type="application/ld+json">
 {
@@ -46,221 +45,232 @@
   ]
 }
 </script>
+
+<style>
+  :root{
+    --void:#0a0708;
+    --void-2:#120a0b;
+    --ash:#d8ccc2;      /* bone text */
+    --ash-dim:#9b8f88;  /* muted text */
+    --blood:#7c1114;    /* deep oxblood */
+    --ember:#c62a26;    /* bright crimson accent */
+    --ember-hot:#e8532c;/* hover */
+    --gold:#b9975b;     /* tarnished gold, rare */
+    --line:rgba(160,40,34,.28);
+    --card:rgba(15,9,10,.80);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    color:var(--ash);
+    background:var(--void);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  /* ---------- BACKGROUND: the Eclipse ---------- */
+  .bg{position:fixed;inset:0;z-index:-3;overflow:hidden;background:
+      radial-gradient(120% 90% at 50% -10%, #2a0c0d 0%, #150809 34%, var(--void) 66%),
+      linear-gradient(180deg,#0c0708,#080506);}
+  /* the black sun with a crimson corona */
+  .eclipse{
+    position:absolute;left:50%;top:-24vmin;transform:translateX(-50%);
+    width:min(86vw,720px);aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle at 50% 50%, #050303 55%, rgba(140,17,20,.45) 61%, rgba(140,17,20,0) 66%);
+    box-shadow:
+      0 0 140px 26px rgba(170,22,22,.30),
+      0 0 60px 4px rgba(232,83,44,.20),
+      inset 0 0 90px rgba(150,18,18,.35);
+    border:1px solid rgba(220,60,44,.28);
+  }
+  .eclipse::after{ /* faint outer flare ring */
+    content:"";position:absolute;inset:-8%;border-radius:50%;
+    background:radial-gradient(circle, rgba(198,42,38,.10) 58%, rgba(198,42,38,0) 63%);
+  }
+  /* vignette */
+  .bg::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(130% 100% at 50% 20%, rgba(0,0,0,0) 40%, rgba(0,0,0,.55) 100%);}
+  /* film grain */
+  .grain{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.06;mix-blend-mode:soft-light;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  /* embers */
+  .embers{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;}
+  .ember{position:absolute;bottom:-12px;width:3px;height:3px;border-radius:50%;
+    background:var(--ember-hot);
+    box-shadow:0 0 6px 1px rgba(232,83,44,.7);
+    animation:rise linear infinite;opacity:0;}
+  @keyframes rise{
+    0%{transform:translateY(0) translateX(0);opacity:0;}
+    12%{opacity:.9;}
+    80%{opacity:.7;}
+    100%{transform:translateY(-108vh) translateX(var(--drift,10px));opacity:0;}
+  }
+  @media (prefers-reduced-motion:reduce){.ember{display:none;}}
+
+  /* ---------- LAYOUT ---------- */
+  .wrap{max-width:660px;margin:0 auto;padding:12vh 22px 8vh;}
+  .card{
+    position:relative;
+    background:var(--card);
+    backdrop-filter:blur(9px) saturate(1.05);
+    -webkit-backdrop-filter:blur(9px) saturate(1.05);
+    border:1px solid var(--line);
+    padding:38px clamp(22px,5vw,44px) 40px;
+    box-shadow:
+      0 40px 120px -30px rgba(0,0,0,.85),
+      0 0 0 1px rgba(0,0,0,.4),
+      inset 0 0 60px rgba(120,15,16,.06);
+  }
+  /* engraved corner ticks */
+  .card::before,.card::after{content:"";position:absolute;width:16px;height:16px;pointer-events:none;}
+  .card::before{top:8px;left:8px;border-top:1px solid rgba(198,42,38,.55);border-left:1px solid rgba(198,42,38,.55);}
+  .card::after{bottom:8px;right:8px;border-bottom:1px solid rgba(198,42,38,.55);border-right:1px solid rgba(198,42,38,.55);}
+
+  /* ---------- HEADER ---------- */
+  .head{display:flex;gap:20px;align-items:center;}
+  .avatar{flex:0 0 auto;width:88px;height:88px;border-radius:50%;object-fit:cover;
+    border:2px solid var(--ember);
+    box-shadow:0 0 0 4px rgba(124,17,20,.25), 0 0 22px rgba(198,42,38,.35);
+    filter:grayscale(.25) contrast(1.05) sepia(.12);}
+  .name{font-family:"Cinzel",serif;font-weight:700;font-size:clamp(1.7rem,6vw,2.35rem);
+    letter-spacing:.04em;line-height:1.05;margin:0;color:#efe6dc;
+    text-shadow:0 1px 0 #000, 0 0 26px rgba(198,42,38,.22);}
+  .tagline{margin:.5em 0 0;color:var(--ash-dim);font-size:.86rem;}
+  .tagline a{color:var(--ash);}
+  .enter{display:inline-block;margin-top:12px;font-size:.82rem;letter-spacing:.06em;
+    color:var(--ember);text-decoration:none;border-bottom:1px solid transparent;}
+  .enter:hover{color:var(--ember-hot);border-bottom-color:var(--ember-hot);text-shadow:0 0 14px rgba(232,83,44,.5);}
+
+  .rule{height:1px;margin:26px 0;border:0;
+    background:linear-gradient(90deg,transparent,rgba(198,42,38,.5),transparent);}
+
+  /* ---------- BODY ---------- */
+  .lead{font-family:"Cinzel",serif;font-weight:500;font-size:1.12rem;line-height:1.5;
+    letter-spacing:.01em;color:#eadfd4;margin:0 0 20px;}
+  .lead .dim{color:var(--ash-dim);}
+  p{margin:0 0 18px;}
+  .prose{color:#c3b7ae;font-size:.92rem;}
+  a.ln{color:var(--ash);text-decoration:none;border-bottom:1px solid rgba(198,42,38,.55);
+    padding-bottom:1px;transition:color .15s,border-color .15s;}
+  a.ln:hover{color:var(--ember-hot);border-bottom-color:var(--ember-hot);text-shadow:0 0 12px rgba(232,83,44,.4);}
+
+  /* ---------- ROWS (recent / pages / links) ---------- */
+  .row{display:grid;grid-template-columns:76px 1fr;gap:16px;align-items:baseline;margin:22px 0;}
+  .label{font-size:.68rem;letter-spacing:.22em;color:var(--ember);text-transform:uppercase;padding-top:2px;}
+  .recent-role{color:#e6dbd0;}
+  .recent-role b{color:#fff;font-weight:600;}
+  .recent-when{color:var(--ash-dim);}
+  .recent-desc{color:#a99e96;font-size:.86rem;margin:.35em 0 .2em;}
+  .inline-links a{color:var(--ash);text-decoration:none;border-bottom:1px solid transparent;}
+  .inline-links a:hover{color:var(--ember-hot);border-bottom-color:var(--ember-hot);}
+  .inline-links .sep{color:var(--blood);margin:0 .5em;}
+  .contact{color:var(--ash-dim);font-size:.86rem;margin-top:26px;}
+  .contact b{color:var(--ash);font-weight:500;}
+
+  @media (max-width:520px){
+    .wrap{padding:8vh 16px 7vh;}
+    .head{gap:16px;}
+    .avatar{width:70px;height:70px;}
+    .row{grid-template-columns:1fr;gap:6px;}
+    .label{padding-top:0;}
+  }
+</style>
 </head>
 <body>
-<a class="skip" href="#work">Skip to work</a>
 
-<!-- ============ NAV ============ -->
-<header class="nav" data-open="false">
-  <div class="container nav-inner">
-    <a class="brand" href="/" aria-label="Srijan Challapalli — home">
-      <span class="mark" aria-hidden="true">SC</span>
-      Srijan Challapalli
-    </a>
-    <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
-      <span></span>
-    </button>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="/projects/">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="/resume.pdf" target="_blank" rel="noopener">Resume</a></li>
-      <li><span class="sep" aria-hidden="true"></span></li>
-      <li><a class="ext" href="https://github.com/SrijanChallapalli" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a class="ext" href="https://linkedin.com/in/srijan-challapalli" target="_blank" rel="noopener">LinkedIn</a></li>
-    </ul>
+<div class="bg" aria-hidden="true"><div class="eclipse"></div></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="embers" id="embers" aria-hidden="true"></div>
+
+<main class="wrap">
+  <div class="card">
+
+    <header class="head">
+      <img class="avatar" src="/profile.png" alt="Srijan Challapalli" width="88" height="88" />
+      <div>
+        <h1 class="name">Srijan Challapalli</h1>
+        <p class="tagline">studying artificial intelligence at <a href="https://www.purdue.edu/" rel="noopener">purdue university</a></p>
+        <a class="enter" href="/projects/">[ see my work ]</a>
+      </div>
+    </header>
+
+    <hr class="rule" />
+
+    <p class="lead">I build and ship products <span class="dim">— and the systems under them.</span></p>
+
+    <p class="prose">
+      I work across full-stack, AI, and systems. I've shipped a privacy-first iOS social app to
+      <a class="ln" href="/projects/chityap/">300+ users (Chityap)</a>, built an AI application
+      workspace that ranks live internship postings with explainable scoring
+      (<a class="ln" href="/projects/apply-pilot/">Apply&nbsp;Pilot</a>), and I'm writing a persistent
+      key-value <a class="ln" href="/projects/lsm/">database engine from scratch in Rust</a> —
+      WAL, memtables, SSTables, bloom filters, and compaction. Most recently I built an M&amp;A
+      due-diligence pipeline at MergeWorks that turns messy financial packets into source-cited,
+      audit-ready analysis, with all arithmetic in a deterministic sandbox rather than the model.
+    </p>
+
+    <p class="prose">
+      I like understanding systems below the abstraction layer, and moving software from an idea
+      to something people actually use. Have a look at <a class="ln" href="/projects/">my projects</a>
+      if you haven't already.
+    </p>
+
+    <hr class="rule" />
+
+    <div class="row">
+      <div class="label">Recent</div>
+      <div>
+        <div class="recent-role"><b>Software / AI Engineer</b> · MergeWorks <span class="recent-when">(2026)</span></div>
+        <p class="recent-desc">Built an M&amp;A due-diligence pipeline: messy financial packets → source-cited, audit-ready analysis, with deterministic arithmetic outside the LLM…</p>
+        <div class="inline-links"><a href="/projects/">see more</a></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="label">Pages</div>
+      <div class="inline-links">
+        <a href="/projects/">projects</a><span class="sep">·</span><a href="/resume.pdf" target="_blank" rel="noopener">resume</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="label">Links</div>
+      <div class="inline-links">
+        <a href="https://github.com/SrijanChallapalli" target="_blank" rel="noopener">github</a><span class="sep">·</span><a href="https://linkedin.com/in/srijan-challapalli" target="_blank" rel="noopener">linkedin</a>
+      </div>
+    </div>
+
+    <p class="contact">open to SWE &amp; product-engineering internships — reach me at <b>srijanchallapalli @ gmail . com</b></p>
+
   </div>
-</header>
-
-<main>
-  <!-- ============ HERO ============ -->
-  <section class="hero">
-    <div class="container">
-      <p class="eyebrow reveal"><span class="dot">●</span> AI @ Purdue University · Software Engineer</p>
-      <h1 class="display reveal" data-delay="1">
-        I build and ship products <span class="muted">— and the systems under them.</span>
-      </h1>
-      <p class="lead hero-lead reveal" data-delay="2">
-        AI @ Purdue. I've shipped a social app to 300+ users, built an AI application workspace,
-        and written a database engine in Rust. Open to SWE and product-engineering internships.
-      </p>
-
-      <div class="proof reveal" data-delay="2" aria-label="At a glance">
-        <span class="proof-item"><span class="pdot" aria-hidden="true"></span>Shipped iOS app · <b>300+ users</b></span>
-        <span class="proof-item"><span class="pdot" aria-hidden="true"></span>AI application workspace</span>
-        <span class="proof-item"><span class="pdot" aria-hidden="true"></span>Database engine in <b>Rust</b></span>
-      </div>
-
-      <div class="hero-actions reveal" data-delay="3">
-        <a class="btn btn-primary" href="#work">View work <span class="ic" aria-hidden="true">↓</span></a>
-        <a class="btn" href="https://github.com/SrijanChallapalli" target="_blank" rel="noopener">GitHub <span class="ic" aria-hidden="true">↗</span></a>
-        <a class="btn" href="https://linkedin.com/in/srijan-challapalli" target="_blank" rel="noopener">LinkedIn <span class="ic" aria-hidden="true">↗</span></a>
-        <a class="btn" href="/resume.pdf" target="_blank" rel="noopener">Résumé <span class="ic" aria-hidden="true">↗</span></a>
-      </div>
-
-      <p class="hero-status reveal" data-delay="3">
-        <span class="live" aria-hidden="true"></span> Open to SWE &amp; product-engineering internships
-      </p>
-    </div>
-  </section>
-
-  <!-- ============ SELECTED WORK (flagships) ============ -->
-  <section class="section" id="work">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2 class="h2">Selected work</h2>
-        <a class="head-link" href="/projects/">All projects <span class="arrow" aria-hidden="true">→</span></a>
-      </div>
-
-      <div class="flags">
-
-        <!-- 01 CHITYAP -->
-        <article class="flag reveal">
-          <div class="flag-no">01</div>
-          <div class="flag-main">
-            <p class="flag-kick">Shipped · Native iOS</p>
-            <h3 class="flag-title">Chityap</h3>
-            <p class="flag-line">A privacy-first social accountability app for close friends, built around daily challenges and a chronological feed.</p>
-            <p class="flag-meta"><b>300+</b> users<span class="sep">·</span><b>~5,000</b> posts<span class="sep">·</span><b>140+</b> Swift files<span class="sep">·</span><b>100+</b> tests</p>
-            <div class="flag-stack">
-              <span class="chip">SwiftUI</span><span class="chip">Supabase</span><span class="chip">PostgreSQL</span><span class="chip">Vision</span><span class="chip">Realtime</span>
-            </div>
-            <div class="flag-links">
-              <a class="text-link" href="/projects/chityap/">Case study <span class="arrow" aria-hidden="true">→</span></a>
-              <a class="link-muted" href="https://github.com/SrijanChallapalli/ChitYap" target="_blank" rel="noopener">GitHub</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 02 APPLY PILOT -->
-        <article class="flag reveal">
-          <div class="flag-no">02</div>
-          <div class="flag-main">
-            <p class="flag-kick">In development · AI workspace</p>
-            <h3 class="flag-title">Apply Pilot</h3>
-            <p class="flag-line">An AI workspace that pulls live internship postings from ATS platforms, ranks them against your profile with explainable scoring, and prepares applications for human review — never auto-submitting.</p>
-            <p class="flag-meta"><b>~7,200</b> lines<span class="sep">·</span><b>21</b> API routes<span class="sep">·</span><b>7</b> product pages</p>
-            <div class="flag-stack">
-              <span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">ATS APIs</span><span class="chip">Explainable ranking</span>
-            </div>
-            <div class="flag-links">
-              <a class="text-link" href="/projects/apply-pilot/">Case study <span class="arrow" aria-hidden="true">→</span></a>
-              <span class="link-muted static" style="border:0">Private repository</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 03 LSM STORAGE ENGINE -->
-        <article class="flag reveal">
-          <div class="flag-no">03</div>
-          <div class="flag-main">
-            <p class="flag-kick">In progress · Systems / Rust</p>
-            <h3 class="flag-title">LSM Storage Engine</h3>
-            <p class="flag-line">A persistent key-value database built from scratch in Rust — write-ahead log, memtable, SSTables, bloom filters, and background compaction — to learn how real databases keep their promises.</p>
-            <p class="flag-meta"><b>WAL</b> durability<span class="sep">·</span><b>Bloom</b>-filtered reads<span class="sep">·</span><b>Crash</b> recovery</p>
-            <div class="flag-stack">
-              <span class="chip">Rust</span><span class="chip">Criterion</span><span class="chip">Linux perf</span><span class="chip">Concurrency</span>
-            </div>
-            <div class="flag-links">
-              <a class="text-link" href="/projects/lsm/">Case study <span class="arrow" aria-hidden="true">→</span></a>
-              <a class="link-muted" href="https://github.com/SrijanChallapalli/LSM-Storage-Engine" target="_blank" rel="noopener">GitHub</a>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ EXPERIENCE ============ -->
-  <section class="section" id="experience">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2 class="h2">Experience</h2>
-        <span class="count">selected roles</span>
-      </div>
-      <div class="timeline">
-
-        <div class="exp reveal">
-          <div class="when">2026</div>
-          <div>
-            <div class="role">Distributed Systems Research</div>
-            <div class="org">Purdue University</div>
-            <p class="exp-desc">Studying consensus, replication, and fault tolerance in distributed data systems.</p>
-          </div>
-        </div>
-
-        <div class="exp reveal">
-          <div class="when">2026</div>
-          <div>
-            <div class="role">Software / AI Engineer</div>
-            <div class="org">MergeWorks</div>
-            <p class="exp-desc">Built an M&amp;A due-diligence pipeline that turns messy financial packets into source-cited, audit-ready analysis — with all arithmetic in a deterministic sandbox, not the LLM.</p>
-          </div>
-        </div>
-
-        <div class="exp reveal">
-          <div class="when">2025</div>
-          <div>
-            <div class="role">Data Science Intern</div>
-            <div class="org">Cosmos Surfaces</div>
-            <p class="exp-desc">Built Python data-collection and contact-extraction pipelines that surfaced 1,000+ structured prospect records.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ ABOUT ============ -->
-  <section class="section" id="about">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2 class="h2">About</h2>
-        <span class="count">who's building this</span>
-      </div>
-      <div class="about">
-        <div class="reveal">
-          <p>I'm Srijan, an AI student at Purdue interested in software engineering, distributed systems, AI infrastructure, and product development.</p>
-          <p>I like understanding systems below the abstraction layer and building software that moves from an idea to something people actually use.</p>
-        </div>
-        <div class="about-portrait reveal" data-delay="1">
-          <img src="/profile.png" alt="Srijan Challapalli" loading="lazy" width="800" height="1000" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CONTACT ============ -->
-  <section class="section contact" id="contact">
-    <div class="container">
-      <h2 class="h2 reveal">Let's build something.</h2>
-      <p class="contact-lead reveal" data-delay="1">
-        Open to SWE and product-engineering internships — and always happy to talk about hard engineering problems.
-      </p>
-      <div class="contact-links reveal" data-delay="2">
-        <a class="btn btn-primary" href="mailto:srijanchallapalli@gmail.com">srijanchallapalli@gmail.com <span class="ic" aria-hidden="true">→</span></a>
-        <a class="btn" href="https://github.com/SrijanChallapalli" target="_blank" rel="noopener">GitHub <span class="ic" aria-hidden="true">↗</span></a>
-        <a class="btn" href="https://linkedin.com/in/srijan-challapalli" target="_blank" rel="noopener">LinkedIn <span class="ic" aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-  </section>
 </main>
 
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="container footer-inner">
-    <span class="meta">© <span data-year>2026</span> Srijan Challapalli · Built from scratch</span>
-    <nav class="fl" aria-label="Footer">
-      <a href="/projects/">Projects</a>
-      <a href="https://github.com/SrijanChallapalli" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://linkedin.com/in/srijan-challapalli" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
-      <a href="mailto:srijanchallapalli@gmail.com">Email</a>
-    </nav>
-  </div>
-</footer>
-
-<script src="/assets/js/site.js" defer></script>
+<script>
+  // drifting embers
+  (function(){
+    var host = document.getElementById('embers');
+    if(!host || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var N = window.innerWidth < 560 ? 18 : 34;
+    for(var i=0;i<N;i++){
+      var e = document.createElement('span');
+      e.className = 'ember';
+      var size = 1.5 + Math.random()*2.5;
+      e.style.left = (Math.random()*100) + 'vw';
+      e.style.width = e.style.height = size.toFixed(1) + 'px';
+      e.style.setProperty('--drift', (Math.random()*80 - 40).toFixed(0) + 'px');
+      e.style.animationDuration = (8 + Math.random()*11).toFixed(1) + 's';
+      e.style.animationDelay = (-Math.random()*16).toFixed(1) + 's';
+      e.style.opacity = 0;
+      if(Math.random() > .55){ e.style.background = 'var(--gold)'; e.style.boxShadow = '0 0 6px 1px rgba(185,151,91,.6)'; }
+      host.appendChild(e);
+    }
+  })();
+</script>
 </body>
 </html>
