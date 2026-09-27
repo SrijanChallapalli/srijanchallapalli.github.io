@@ -174,3 +174,32 @@ a{color:inherit;text-decoration:none;}
   display:inline-flex;align-items:center;gap:7px;}
 .link-private::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold-dim);
   box-shadow:0 0 8px rgba(138,116,74,.6);}
+
+/* ---------- CODA + FOOTER ---------- */
+.coda{margin-top:clamp(48px,8vw,80px);display:flex;align-items:baseline;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;padding-top:clamp(26px,4vw,40px);border-top:1px solid var(--line);}
+.coda .lbl{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ash-dim);}
+.coda a{font-family:"Cinzel",serif;font-weight:600;font-size:clamp(1.2rem,3.4vw,1.7rem);letter-spacing:.02em;
+  color:#efe6dc;display:inline-flex;align-items:center;gap:12px;transition:.16s;}
+.coda a .arrow{color:var(--ember);transition:transform .2s;}
+.coda a:hover{text-shadow:0 0 20px rgba(232,83,44,.35);}
+.coda a:hover .arrow{transform:translate(4px,-4px);color:var(--ember-hot);}
+
+.footer{margin-top:clamp(40px,6vw,64px);display:flex;align-items:center;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;color:var(--ash-dim);font-size:.74rem;letter-spacing:.04em;}
+.footer nav{display:flex;gap:18px;}
+.footer nav a{border-bottom:1px solid transparent;transition:color .15s,border-color .15s;}
+.footer nav a:hover{color:var(--ash);border-bottom-color:var(--ember);}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:640px){
+  .masthead .who{display:none;}
+  .work{grid-template-columns:34px 1fr;gap:6px 16px;padding:18px 16px;}
+  .work-idx{font-size:1.1rem;}
+  .work-link{grid-column:1 / -1;padding-top:12px;}
+  .chapter-head .count{display:none;}
+}
+@media (max-width:400px){
+  .work{grid-template-columns:1fr;}
+  .work-idx{display:none;}
+}
