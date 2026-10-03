@@ -1,0 +1,165 @@
+/* =========================================================
+   THE DRIVE — a two-minute-drill portfolio
+   Base layer: night stadium, the gridiron, the scoreboard.
+   ========================================================= */
+
+:root{
+  --night:#05100a;        /* stadium sky */
+  --night-2:#0a1b12;
+  --turf:#0f5a2c;         /* grass */
+  --turf-2:#0c4a24;       /* darker mow stripe */
+  --turf-line:rgba(238,243,236,.82); /* chalk */
+  --chalk:#eef3ec;
+  --chalk-dim:#a9b7ab;
+  --ember:#c62a26;        /* brand crimson — the home colors */
+  --ember-hot:#e8532c;
+  --blood:#7c1114;
+  --led:#ffb02e;          /* scoreboard amber LEDs */
+  --led-dim:#5a3c0a;
+  --steel:#1a2a20;
+  --line:rgba(238,243,236,.14);
+  --card:rgba(7,18,11,.82);
+}
+
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color:var(--chalk);
+  background:var(--night);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+/* ---------- STADIUM BACKDROP ---------- */
+.sky{
+  position:fixed;inset:0;z-index:-3;
+  background:
+    radial-gradient(130% 80% at 50% -20%, #14361f 0%, #0a1b12 42%, var(--night) 72%),
+    linear-gradient(180deg,#071b0f,#040c07);
+}
+/* two banks of stadium lights up top */
+.lights{position:fixed;top:0;left:0;right:0;height:40vh;z-index:-2;pointer-events:none;overflow:hidden;}
+.lights::before,.lights::after{
+  content:"";position:absolute;top:-28vh;width:62vw;height:62vh;border-radius:50%;
+  background:radial-gradient(circle, rgba(255,246,214,.16), rgba(255,246,214,0) 60%);
+  filter:blur(6px);
+}
+.lights::before{left:-10vw;}
+.lights::after{right:-10vw;}
+/* fine grain so it isn't flat */
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ---------- SHELL ---------- */
+.wrap{max-width:1040px;margin:0 auto;padding:18px clamp(14px,3vw,28px) 10vh;}
+
+.press{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:4px 2px 18px;
+}
+.press .back{
+  color:var(--chalk-dim);text-decoration:none;font-size:.78rem;letter-spacing:.08em;
+  border-bottom:1px solid transparent;transition:color .15s,border-color .15s;
+}
+.press .back:hover{color:var(--ember-hot);border-bottom-color:var(--ember-hot);}
+.sigil{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--chalk);}
+.sigil .ring{
+  display:grid;place-items:center;width:34px;height:34px;border-radius:50%;
+  border:2px solid var(--ember);font-family:"Cinzel",serif;font-weight:700;font-size:.8rem;
+  box-shadow:0 0 18px rgba(198,42,38,.4);
+}
+.sigil .who{font-size:.8rem;letter-spacing:.06em;color:var(--chalk-dim);}
+
+/* ---------- SCOREBOARD ---------- */
+.scoreboard{
+  display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch;
+  background:linear-gradient(180deg,#0b1710,#060f09);
+  border:1px solid var(--line);border-radius:12px;
+  padding:12px clamp(12px,2.4vw,22px);
+  box-shadow:0 24px 60px -30px #000, inset 0 1px 0 rgba(255,255,255,.04);
+  margin-bottom:16px;
+}
+.team{display:flex;flex-direction:column;gap:3px;justify-content:center;}
+.team.visitors{text-align:right;}
+.team .abbr{font-family:"Cinzel",serif;font-weight:700;font-size:clamp(1.1rem,3.4vw,1.7rem);letter-spacing:.08em;}
+.team.home .abbr{color:var(--ember-hot);text-shadow:0 0 18px rgba(232,83,44,.35);}
+.team .sub{font-size:.6rem;letter-spacing:.18em;color:var(--chalk-dim);text-transform:uppercase;}
+.team .score{font-family:"Cinzel",serif;font-weight:700;font-size:clamp(1.6rem,5vw,2.4rem);color:var(--led);line-height:1;
+  text-shadow:0 0 14px rgba(255,176,46,.5);}
+
+.gameclock{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  min-width:116px;padding:6px 14px;border-left:1px solid var(--line);border-right:1px solid var(--line);
+}
+.gameclock .qtr{font-size:.6rem;letter-spacing:.22em;color:var(--chalk-dim);text-transform:uppercase;}
+.gameclock .clock{
+  font-family:"Cinzel",serif;font-weight:700;font-size:clamp(1.3rem,4.4vw,2rem);color:var(--led);line-height:1;
+  text-shadow:0 0 12px rgba(255,176,46,.45);font-variant-numeric:tabular-nums;
+}
+.gameclock .clock.hot{color:var(--ember-hot);text-shadow:0 0 14px rgba(232,83,44,.6);}
+
+/* down & distance strip */
+.situation{
+  display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:center;
+  margin-bottom:18px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--chalk-dim);
+}
+.situation b{color:var(--chalk);font-weight:600;}
+.situation .pill{
+  padding:4px 11px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.02);
+}
+.situation .pill.live{border-color:var(--ember);color:var(--ember-hot);
+  box-shadow:0 0 16px rgba(198,42,38,.25);}
+
+/* ---------- THE FIELD ---------- */
+.field{
+  position:relative;width:100%;aspect-ratio:16/9;min-height:300px;max-height:60vh;
+  border-radius:14px;overflow:hidden;
+  border:2px solid rgba(238,243,236,.18);
+  background:
+    repeating-linear-gradient(90deg, var(--turf) 0 9.09%, var(--turf-2) 9.09% 18.18%);
+  box-shadow:0 40px 90px -40px #000, inset 0 0 120px rgba(0,0,0,.5);
+}
+/* yard lines every 10 yards across the 100-yd playing area (10%..90%) */
+.field .lines{position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(90deg, transparent calc(10% - 1px), var(--turf-line) 10%, transparent calc(10% + 1px)),
+    linear-gradient(90deg, transparent calc(18% - 1px), var(--turf-line) 18%, transparent calc(18% + 1px)),
+    linear-gradient(90deg, transparent calc(26% - 1px), var(--turf-line) 26%, transparent calc(26% + 1px)),
+    linear-gradient(90deg, transparent calc(34% - 1px), var(--turf-line) 34%, transparent calc(34% + 1px)),
+    linear-gradient(90deg, transparent calc(42% - 1px), var(--turf-line) 42%, transparent calc(42% + 1px)),
+    linear-gradient(90deg, transparent calc(50% - 1px), var(--turf-line) 50%, transparent calc(50% + 1px)),
+    linear-gradient(90deg, transparent calc(58% - 1px), var(--turf-line) 58%, transparent calc(58% + 1px)),
+    linear-gradient(90deg, transparent calc(66% - 1px), var(--turf-line) 66%, transparent calc(66% + 1px)),
+    linear-gradient(90deg, transparent calc(74% - 1px), var(--turf-line) 74%, transparent calc(74% + 1px)),
+    linear-gradient(90deg, transparent calc(82% - 1px), var(--turf-line) 82%, transparent calc(82% + 1px)),
+    linear-gradient(90deg, transparent calc(90% - 1px), var(--turf-line) 90%, transparent calc(90% + 1px));
+}
+/* hash marks down the middle */
+.field .hashes{position:absolute;left:10%;right:10%;top:34%;height:2px;pointer-events:none;
+  background:repeating-linear-gradient(90deg, var(--turf-line) 0 2px, transparent 2px 2.5%);opacity:.5;}
+.field .hashes.low{top:66%;}
+
+/* end zones */
+.endzone{position:absolute;top:0;bottom:0;width:10%;display:grid;place-items:center;
+  background:linear-gradient(0deg, rgba(124,17,20,.55), rgba(124,17,20,.78));}
+.endzone.own{left:0;border-right:2px solid var(--turf-line);}
+.endzone.pay{right:0;border-left:2px solid var(--turf-line);
+  background:linear-gradient(0deg, rgba(124,17,20,.65), rgba(198,42,38,.85));}
+.endzone .ez-word{
+  font-family:"Cinzel",serif;font-weight:700;letter-spacing:.12em;
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  font-size:clamp(.8rem,2.2vw,1.3rem);color:#f3e7dc;text-shadow:0 1px 6px #000;white-space:nowrap;
+}
+.endzone.pay .ez-word{color:#fff;text-shadow:0 0 16px rgba(255,255,255,.4),0 1px 6px #000;}
+
+/* goal posts */
+.goalpost{position:absolute;top:50%;width:2px;height:40%;transform:translateY(-50%);
+  background:var(--led);opacity:.7;}
+.goalpost.right{right:3px;}
+.goalpost::before,.goalpost::after{content:"";position:absolute;top:0;width:2px;height:34%;background:var(--led);}
+.goalpost.right::before{right:0;transform:translateX(0) translateY(-100%);}
