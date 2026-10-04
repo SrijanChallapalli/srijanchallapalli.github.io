@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#05100a" />
+<title>The Drive — Srijan Challapalli</title>
+<meta name="description" content="Run the two-minute drill through Srijan Challapalli's portfolio. Every completed pass moves the chains and reveals more — reach the end zone to unlock the full project index." />
+<meta name="author" content="Srijan Challapalli" />
+<link rel="canonical" href="https://srijanchallapalli.com/play/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Srijan Challapalli" />
+<meta property="og:title" content="The Drive — Srijan Challapalli" />
+<meta property="og:description" content="A football-themed portfolio. Run the drive; every move reveals more. Reach the end zone for the whole body of work." />
+<meta property="og:url" content="https://srijanchallapalli.com/play/" />
+<meta property="og:image" content="https://srijanchallapalli.com/profile.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The Drive — Srijan Challapalli" />
+<meta name="twitter:image" content="https://srijanchallapalli.com/profile.png" />
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="/assets/css/play.css" />
+</head>
+<body>
+
+<div class="sky" aria-hidden="true"></div>
+<div class="lights" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<main class="wrap">
+
+  <header class="press">
+    <a class="back" href="/"><span aria-hidden="true">←</span> Leave the field</a>
+    <a class="sigil" href="/" aria-label="Srijan Challapalli — home">
+      <span class="ring" aria-hidden="true">SC</span>
+      <span class="who">Srijan Challapalli</span>
+    </a>
+  </header>
+
+  <!-- ===================== SCOREBOARD ===================== -->
+  <section class="scoreboard" aria-label="Scoreboard">
+    <div class="team home">
+      <span class="abbr">SC</span>
+      <span class="sub">Challapalli · QB #1</span>
+      <span class="score" id="homeScore">21</span>
+    </div>
+    <div class="gameclock">
+      <span class="qtr">4th &middot; 2-min drill</span>
+      <span class="clock" id="gameClock">2:00</span>
+    </div>
+    <div class="team visitors">
+      <span class="abbr">REC</span>
+      <span class="sub">Recruiters</span>
+      <span class="score" id="awayScore">24</span>
+    </div>
+  </section>
+
+  <div class="situation" aria-live="polite">
+    <span class="pill live" id="downDist">1st &amp; 10</span>
+    <span>Ball on <b id="ballOn">own 25</b></span>
+    <span>Need <b id="toGo">a game-winning drive</b></span>
+    <a class="boxscore-jump" href="#boxscore">Skip the game — jump to the box score ▾</a>
+  </div>
+
+  <!-- ===================== THE FIELD ===================== -->
+  <section class="field" id="field" aria-label="The field">
+    <div class="lines" aria-hidden="true"></div>
+    <div class="hashes" aria-hidden="true"></div>
+    <div class="hashes low" aria-hidden="true"></div>
+
+    <div class="endzone own" aria-hidden="true"><span class="ez-word">SC &middot; EST. PURDUE</span></div>
+    <div class="endzone pay" aria-hidden="true">
+      <span class="ez-word">PAY DIRT &middot; PROJECTS</span>
+      <span class="goalpost right"></span>
+    </div>
+
+    <svg class="routes" id="routes" viewBox="0 0 1000 562" preserveAspectRatio="none" aria-hidden="true"></svg>
+    <div class="tokens" id="tokens" aria-hidden="true"></div>
+
+    <div class="fieldmsg" id="fieldmsg" aria-hidden="true"></div>
+  </section>
+
+  <!-- play-by-play ticker -->
+  <p class="announce" id="announce" aria-live="polite">
+    Fourth quarter, down three, two minutes on the clock. You take the snap.
+    Find the open man — every completion moves the chains and tells you more.
+  </p>
+
+  <!-- ===================== PLAY CALL ===================== -->
+  <section class="playcall" id="playcall" aria-label="Call the play">
+    <h2 class="playcall-head">Call the play</h2>
+    <p class="playcall-sub">Read the field. Throw to a receiver to learn who you're drafting.</p>
+    <div class="receivers" id="receivers" role="group" aria-label="Receivers"></div>
+  </section>
+
+  <!-- ===================== REVEAL / DRIVE LOG ===================== -->
+  <section class="reveal" id="reveal" aria-live="polite" aria-label="What the last play revealed"></section>
+
+  <!-- ===================== BOX SCORE (accessible fallback) ===================== -->
+  <section class="filmroom" id="boxscore" aria-label="Box score — the full story, no game required">
+    <!-- populated with the complete, plain version of everything -->
+  </section>
+
+  <footer class="footer">
+    <span>&copy; <span data-year>2026</span> Srijan Challapalli &mdash; built by hand</span>
+    <nav aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/projects/">Projects</a>
+      <a href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </nav>
+  </footer>
+
+</main>
+
+<noscript>
+  <p style="max-width:660px;margin:0 auto;padding:0 20px 40px;color:#a9b7ab;">
+    This drive needs JavaScript to play — but the full story is below in the
+    <a href="#boxscore" style="color:#e8532c;">box score</a>, and every project lives on the
+    <a href="/projects/" style="color:#e8532c;">projects page</a>.
+  </p>
+</noscript>
+
+<script src="/assets/js/play.js" defer></script>
+</body>
+</html>
