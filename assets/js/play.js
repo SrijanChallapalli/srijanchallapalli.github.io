@@ -347,8 +347,7 @@
   // ---------- boot ----------
   buildTokens();
   renderPlaycall();
-  lineUp();
-  updateHUD(DOWNS[0]);
+  lineUp();           // kickoff HUD stays as authored: own 25, a game-winning drive
   setClock(120);
 
   var yr = document.querySelector("[data-year]");
