@@ -163,3 +163,150 @@ body{
 .goalpost.right{right:3px;}
 .goalpost::before,.goalpost::after{content:"";position:absolute;top:0;width:2px;height:34%;background:var(--led);}
 .goalpost.right::before{right:0;transform:translateX(0) translateY(-100%);}
+
+/* =========================================================
+   Components: players, routes, play-call, the reveal.
+   ========================================================= */
+
+/* SVG route overlay fills the field */
+.field .routes{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;}
+.field .routes path{
+  fill:none;stroke:var(--chalk);stroke-width:2.5;stroke-linecap:round;
+  stroke-dasharray:7 7;opacity:0;
+  filter:drop-shadow(0 0 4px rgba(0,0,0,.6));
+  transition:opacity .3s ease;
+}
+.field .routes path.show{opacity:.85;animation:dash 9s linear infinite;}
+.field .routes path.chosen{stroke:var(--led);opacity:1;}
+@keyframes dash{to{stroke-dashoffset:-140;}}
+
+/* player + ball tokens layer */
+.field .tokens{position:absolute;inset:0;z-index:3;pointer-events:none;}
+.token{
+  position:absolute;transform:translate(-50%,-50%);
+  width:clamp(26px,4.4vw,38px);height:clamp(26px,4.4vw,38px);border-radius:50%;
+  display:grid;place-items:center;font-size:clamp(.5rem,1.5vw,.66rem);font-weight:600;
+  letter-spacing:.02em;transition:left .9s cubic-bezier(.34,1.2,.5,1), top .9s cubic-bezier(.34,1.2,.5,1);
+}
+.token.qb{background:radial-gradient(circle at 35% 30%, #e8532c, #7c1114);color:#fff;
+  border:2px solid #ffd9c9;box-shadow:0 0 16px rgba(232,83,44,.6);}
+.token.wr{background:rgba(7,18,11,.55);color:var(--chalk);border:2px solid var(--chalk);
+  box-shadow:0 2px 10px rgba(0,0,0,.5);backdrop-filter:blur(2px);}
+.token.wr.open{border-color:var(--led);color:var(--led);animation:pulse 1.4s ease-in-out infinite;}
+.token.wr.covered{opacity:.32;filter:grayscale(1);}
+.token.wr.scored{border-color:var(--led);background:rgba(255,176,46,.22);color:var(--led);}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,176,46,.5);}50%{box-shadow:0 0 0 7px rgba(255,176,46,0);}}
+
+.ball{
+  position:absolute;z-index:4;width:16px;height:10px;border-radius:50%/60%;
+  transform:translate(-50%,-50%) rotate(-24deg);
+  background:radial-gradient(circle at 35% 35%, #9a5a2a, #5a2f11);
+  border:1px solid #2e1708;box-shadow:0 0 8px rgba(0,0,0,.6);opacity:0;
+  transition:left .62s cubic-bezier(.4,.05,.6,1), top .62s cubic-bezier(.4,.05,.6,1);
+}
+.ball.carried{opacity:1;}
+.ball::after{content:"";position:absolute;left:50%;top:20%;width:1px;height:60%;
+  background:rgba(255,255,255,.7);transform:translateX(-50%);}
+
+/* line-of-scrimmage / first-down markers */
+.marker{position:absolute;top:0;bottom:0;width:2px;z-index:1;}
+.marker.los{background:rgba(255,255,255,.55);}
+.marker.first{background:var(--led);box-shadow:0 0 10px rgba(255,176,46,.6);}
+
+/* big field message (TOUCHDOWN, completions) */
+.fieldmsg{position:absolute;inset:0;z-index:5;display:grid;place-items:center;pointer-events:none;
+  text-align:center;opacity:0;transition:opacity .25s;}
+.fieldmsg.show{opacity:1;}
+.fieldmsg .big{font-family:"Cinzel",serif;font-weight:700;letter-spacing:.14em;
+  font-size:clamp(1.6rem,8vw,4.5rem);color:#fff;text-shadow:0 0 30px rgba(255,176,46,.8),0 2px 10px #000;}
+.fieldmsg.td .big{animation:tdpop .6s cubic-bezier(.2,1.4,.4,1);color:var(--led);}
+@keyframes tdpop{0%{transform:scale(.4);opacity:0;}60%{transform:scale(1.12);}100%{transform:scale(1);opacity:1;}}
+.fieldmsg .small{display:block;margin-top:8px;font-size:clamp(.7rem,2.2vw,1rem);letter-spacing:.2em;
+  color:var(--chalk);text-transform:uppercase;}
+
+/* play-by-play ticker */
+.announce{
+  margin:16px 0 22px;padding:12px 16px;border-left:3px solid var(--ember);
+  background:rgba(7,18,11,.5);border-radius:0 8px 8px 0;
+  font-style:italic;color:#d6e0d6;font-size:.9rem;min-height:1.5em;
+}
+
+/* ---------- PLAY CALL ---------- */
+.playcall{margin-bottom:10px;}
+.playcall-head{font-family:"Cinzel",serif;font-weight:700;letter-spacing:.06em;
+  font-size:1.2rem;margin:0 0 2px;color:#efe6dc;}
+.playcall-sub{margin:0 0 16px;color:var(--chalk-dim);font-size:.82rem;}
+.receivers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+.wr-btn{
+  text-align:left;cursor:pointer;color:var(--chalk);
+  background:linear-gradient(180deg,rgba(15,30,20,.9),rgba(7,18,11,.9));
+  border:1px solid var(--line);border-radius:12px;padding:15px 16px;
+  font-family:inherit;transition:transform .12s, border-color .15s, box-shadow .15s;
+  position:relative;overflow:hidden;
+}
+.wr-btn:hover,.wr-btn:focus-visible{transform:translateY(-2px);border-color:var(--led);
+  box-shadow:0 14px 34px -18px #000, 0 0 0 1px rgba(255,176,46,.3);outline:none;}
+.wr-btn .route{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--led);}
+.wr-btn .topic{display:block;font-family:"Cinzel",serif;font-weight:600;font-size:1.05rem;margin:4px 0 4px;}
+.wr-btn .hint{display:block;font-size:.78rem;color:var(--chalk-dim);line-height:1.45;}
+.wr-btn .yards{position:absolute;top:12px;right:14px;font-size:.66rem;color:var(--chalk-dim);letter-spacing:.08em;}
+.wr-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.wr-btn.caught{border-color:rgba(255,176,46,.5);}
+.wr-btn.caught::after{content:"✓ caught";position:absolute;bottom:10px;right:14px;font-size:.64rem;color:var(--led);letter-spacing:.1em;}
+
+.goforit{
+  margin-top:14px;width:100%;cursor:pointer;font-family:"Cinzel",serif;font-weight:700;
+  letter-spacing:.14em;font-size:1.05rem;color:#fff;text-transform:uppercase;
+  background:linear-gradient(180deg,var(--ember-hot),var(--blood));
+  border:1px solid #ffd9c9;border-radius:12px;padding:16px;
+  box-shadow:0 18px 40px -20px rgba(232,83,44,.8);transition:transform .12s, box-shadow .15s;
+}
+.goforit:hover,.goforit:focus-visible{transform:translateY(-2px);outline:none;
+  box-shadow:0 22px 48px -18px rgba(232,83,44,.95);}
+
+/* ---------- REVEAL PANEL ---------- */
+.reveal{display:flex;flex-direction:column;gap:14px;margin:18px 0 10px;}
+.rev-card{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px clamp(16px,3vw,24px);animation:slideup .4s ease both;
+  box-shadow:0 24px 60px -34px #000;
+}
+@keyframes slideup{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+.rev-card .tag{font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--led);}
+.rev-card h3{font-family:"Cinzel",serif;font-weight:700;font-size:1.25rem;margin:4px 0 8px;color:#efe6dc;}
+.rev-card p{margin:0 0 10px;color:#c9d3c9;font-size:.92rem;}
+.rev-card p:last-child{margin-bottom:0;}
+.rev-card a{color:var(--chalk);border-bottom:1px solid rgba(232,83,44,.6);text-decoration:none;}
+.rev-card a:hover{color:var(--ember-hot);border-bottom-color:var(--ember-hot);}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px;}
+.chip{font-size:.7rem;letter-spacing:.04em;color:var(--chalk-dim);border:1px solid var(--line);
+  border-radius:999px;padding:3px 10px;background:rgba(255,255,255,.02);}
+
+/* ---------- FOOTER ---------- */
+.footer{display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:space-between;align-items:center;
+  margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:.74rem;color:var(--chalk-dim);}
+.footer nav{display:flex;gap:16px;}
+.footer a{color:var(--chalk-dim);text-decoration:none;border-bottom:1px solid transparent;}
+.footer a:hover{color:var(--ember-hot);border-bottom-color:var(--ember-hot);}
+
+.boxscore-jump{color:var(--chalk-dim);text-decoration:none;border-bottom:1px solid transparent;
+  font-size:.7rem;letter-spacing:.06em;}
+.boxscore-jump:hover{color:var(--ember-hot);border-bottom-color:var(--ember-hot);}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:560px){
+  .scoreboard{grid-template-columns:1fr auto 1fr;padding:10px 10px;}
+  .gameclock{min-width:84px;padding:4px 8px;}
+  .team .sub{display:none;}
+  .field{aspect-ratio:4/3;min-height:240px;}
+  .situation{font-size:.66rem;gap:8px 12px;}
+  .announce{font-size:.82rem;}
+}
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;}
+  .token,.ball{transition:none !important;}
+  html{scroll-behavior:auto;}
+}
