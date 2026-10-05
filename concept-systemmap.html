@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Srijan Challapalli — the system</title>
+<meta name="description" content="Srijan Challapalli, rendered as an architecture — product, intelligence, protocols, and the systems below the abstraction line." />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --void:#070a0c; --panel:#0c1116; --panel-2:#0f161c;
+    --ink:#e6ece9; --dim:#8c9a97; --faint:#5f6d6a;
+    --ember:#c62a26; --ember-hot:#e8532c; --gold:#b9975b;
+    --line:rgba(190,205,200,.12); --grid:rgba(190,205,200,.045);
+    --live:#3fb27f;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;min-height:100vh;background:var(--void);color:var(--ink);
+    font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  /* blueprint grid */
+  body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:
+      linear-gradient(var(--grid) 1px,transparent 1px) 0 0/34px 34px,
+      linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/34px 34px,
+      radial-gradient(120% 80% at 80% -10%,rgba(124,17,20,.18),transparent 60%);}
+  body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:radial-gradient(130% 100% at 50% 10%,transparent 50%,rgba(0,0,0,.55));}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:30px clamp(16px,3.5vw,34px) 8vh;}
+
+  /* ---------- header / hero ---------- */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:34px;}
+  .brand{font-family:"Cinzel",serif;font-weight:700;letter-spacing:.06em;font-size:1rem;}
+  .brand span{color:var(--ember-hot);}
+  .top nav{display:flex;gap:18px;font-size:.76rem;}
+  .top nav a{color:var(--dim);text-decoration:none;border-bottom:1px solid transparent;}
+  .top nav a:hover{color:var(--ember-hot);border-bottom-color:var(--ember-hot);}
+
+  .hero{margin-bottom:30px;}
+  .hero .eyebrow{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ember-hot);margin:0 0 10px;}
+  .hero h1{font-family:"Cinzel",serif;font-weight:700;font-size:clamp(2rem,6.5vw,3.4rem);
+    letter-spacing:.02em;line-height:1.02;margin:0 0 12px;}
+  .hero .thesis{font-size:clamp(.95rem,2.4vw,1.15rem);color:#cdd7d3;max-width:60ch;margin:0 0 6px;}
+  .hero .thesis b{color:#fff;}
+  .hero .thesis .uline{color:var(--ember-hot);}
+  .hero .sub{color:var(--dim);font-size:.85rem;max-width:62ch;margin:10px 0 0;}
+
+  /* metrics strip */
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0 34px;}
+  .metric{background:linear-gradient(180deg,var(--panel),var(--void));border:1px solid var(--line);
+    border-radius:10px;padding:14px 16px;}
+  .metric .n{font-family:"Cinzel",serif;font-weight:700;font-size:clamp(1.1rem,3vw,1.5rem);color:#fff;}
+  .metric .n .u{color:var(--ember-hot);}
+  .metric .k{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-top:4px;}
+
+  /* ---------- the system: layout ---------- */
+  .system{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start;}
+  @media (max-width:860px){.system{grid-template-columns:1fr;}.metrics{grid-template-columns:repeat(2,1fr);}}
+
+  .stack{position:relative;display:flex;flex-direction:column;gap:14px;}
+  /* flowing spine */
+  .stack::before{content:"";position:absolute;left:10px;top:12px;bottom:12px;width:2px;
+    background:linear-gradient(180deg,var(--ember),rgba(198,42,38,.15));}
+  .stack::after{content:"";position:absolute;left:7px;top:0;width:8px;height:8px;border-radius:50%;
+    background:var(--ember-hot);box-shadow:0 0 12px var(--ember-hot);animation:flow 4.5s linear infinite;}
+  @keyframes flow{0%{top:0;opacity:0;}8%{opacity:1;}92%{opacity:1;}100%{top:100%;opacity:0;}}
+
+  .layer{position:relative;padding-left:34px;}
+  .layer-head{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;flex-wrap:wrap;}
+  .layer-head .idx{font-family:"Cinzel",serif;color:var(--ember-hot);font-weight:700;font-size:.85rem;}
+  .layer-head .name{font-family:"Cinzel",serif;font-weight:600;font-size:1.02rem;color:#eef3f0;}
+  .layer-head .role{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+    border:1px solid var(--line);border-radius:999px;padding:2px 9px;}
+  .nodes{display:flex;flex-wrap:wrap;gap:9px;}
+  .node{cursor:pointer;font-family:inherit;text-align:left;color:var(--ink);
+    background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;
+    transition:transform .12s,border-color .15s,box-shadow .15s,background .15s;position:relative;}
+  .node:hover,.node:focus-visible{transform:translateY(-2px);border-color:var(--ember);outline:none;
+    box-shadow:0 10px 26px -16px #000;background:var(--panel-2);}
+  .node.active{border-color:var(--ember-hot);background:var(--panel-2);
+    box-shadow:0 0 0 1px rgba(232,83,44,.4),0 10px 26px -16px #000;}
+  .node .nm{font-weight:600;font-size:.86rem;}
+  .node .mt{display:block;font-size:.66rem;color:var(--dim);margin-top:2px;letter-spacing:.02em;}
+  .node .dot{position:absolute;top:9px;right:10px;width:6px;height:6px;border-radius:50%;background:var(--faint);}
+  .node .dot.live{background:var(--live);box-shadow:0 0 7px var(--live);}
+
+  /* the abstraction line */
+  .abstraction{display:flex;align-items:center;gap:14px;margin:8px 0 2px;padding-left:34px;}
+  .abstraction span{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);white-space:nowrap;}
+  .abstraction .ln{flex:1;height:1px;background:repeating-linear-gradient(90deg,var(--gold) 0 7px,transparent 7px 14px);opacity:.5;}
+
+  /* substrate */
+  .substrate{margin-top:6px;margin-left:34px;border:1px dashed var(--line);border-radius:10px;
+    padding:14px 16px;background:rgba(124,17,20,.06);}
+  .substrate .t{font-family:"Cinzel",serif;font-weight:600;color:#eef3f0;font-size:.92rem;}
+  .substrate .d{font-size:.78rem;color:var(--dim);margin-top:3px;}
+
+  /* ---------- detail panel ---------- */
+  .detail{position:sticky;top:20px;background:linear-gradient(180deg,var(--panel),var(--void));
+    border:1px solid var(--line);border-radius:12px;padding:20px;min-height:260px;}
+  @media (max-width:860px){.detail{position:static;}}
+  .detail .dtag{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ember-hot);}
+  .detail h3{font-family:"Cinzel",serif;font-weight:700;font-size:1.3rem;margin:6px 0 2px;color:#fff;}
+  .detail .layer-of{font-size:.7rem;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+  .detail p{font-size:.88rem;color:#cdd7d3;margin:0 0 14px;}
+  .detail .stacklbl{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:6px;}
+  .detail .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+  .detail .chip{font-size:.68rem;color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:3px 9px;}
+  .detail .go{display:inline-block;font-size:.8rem;color:#fff;text-decoration:none;letter-spacing:.04em;
+    background:linear-gradient(180deg,var(--ember-hot),#7c1114);border:1px solid #ffd9c9;border-radius:8px;padding:9px 16px;
+    transition:transform .12s;}
+  .detail .go:hover{transform:translateY(-1px);}
+  .detail .priv{font-size:.74rem;color:var(--faint);border:1px solid var(--line);border-radius:8px;padding:9px 14px;display:inline-block;}
+  .detail .hint{font-size:.72rem;color:var(--faint);margin-top:14px;padding-top:12px;border-top:1px solid var(--line);}
+
+  /* footer */
+  .foot{margin-top:46px;padding-top:20px;border-top:1px solid var(--line);
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.76rem;color:var(--dim);}
+  .foot a{color:var(--dim);text-decoration:none;border-bottom:1px solid transparent;}
+  .foot a:hover{color:var(--ember-hot);border-bottom-color:var(--ember-hot);}
+  .foot nav{display:flex;gap:16px;flex-wrap:wrap;}
+
+  @media (prefers-reduced-motion:reduce){.stack::after{animation:none;display:none;}*{transition:none !important;}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <div class="top">
+    <div class="brand">Srijan <span>Challapalli</span></div>
+    <nav>
+      <a href="#" aria-current="page">system</a>
+      <a href="/projects/">projects</a>
+      <a href="/resume.pdf">résumé</a>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <p class="eyebrow">A system diagram · concept</p>
+    <h1>I build at every layer.</h1>
+    <p class="thesis">Full-stack products on top, applied AI and protocols in the middle, and the parts I like most <span class="uline">below the abstraction line</span> — a database engine written from scratch in Rust.</p>
+    <p class="sub">Studying Artificial Intelligence at Purdue. Click any node to open it. This is a layout concept — the map below is the whole portfolio.</p>
+  </section>
+
+  <div class="metrics">
+    <div class="metric"><div class="n">300<span class="u">+</span></div><div class="k">users shipped to</div></div>
+    <div class="metric"><div class="n">~5,000</div><div class="k">posts on Chityap</div></div>
+    <div class="metric"><div class="n">19</div><div class="k">projects built</div></div>
+    <div class="metric"><div class="n">1</div><div class="k">DB engine, from scratch</div></div>
+  </div>
+
+  <div class="system">
+    <div class="stack" id="stack"><!-- layers injected --></div>
+    <aside class="detail" id="detail" aria-live="polite"><!-- node detail injected --></aside>
+  </div>
+
+  <footer class="foot">
+    <span>Concept mockup — one of several directions.</span>
+    <nav>
+      <a href="mailto:srijanchallapalli@gmail.com">email</a>
+      <a href="https://github.com/SrijanChallapalli" target="_blank" rel="noopener">github</a>
+      <a href="https://linkedin.com/in/srijan-challapalli" target="_blank" rel="noopener">linkedin</a>
+    </nav>
+  </footer>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var LAYERS = [
+    { idx:"00", name:"Products", role:"Full-stack · product", nodes:[
+      {id:"chityap", nm:"Chityap", mt:"iOS · 300+ users", live:true,
+        tag:"Shipped product", p:"A privacy-first social accountability app for close friends — native SwiftUI on a realtime Postgres backend, with an on-device Vision rep-counter. 300+ beta users, ~5,000 posts.",
+        stack:["SwiftUI","Supabase","PostgreSQL","Vision","HealthKit","APNs"], href:"https://chityap.com/"},
+      {id:"applypilot", nm:"Apply Pilot", mt:"AI workspace · in dev",
+        tag:"In development", p:"An AI internship-discovery workspace that structures live ATS postings, ranks them with explainable scoring, and prepares applications for human review — never auto-submitting.",
+        stack:["Next.js","TypeScript","ATS APIs","Ranking"], href:null},
+      {id:"mergeworks", nm:"MergeWorks", mt:"M&A pipeline · 2026",
+        tag:"Software / AI Engineer", p:"An M&A due-diligence pipeline that turns messy financial packets into source-cited, audit-ready analysis — with all arithmetic in a deterministic sandbox rather than the model.",
+        stack:["Python","LLM orchestration","Deterministic sandbox"], href:null}
+    ]},
+    { idx:"01", name:"Intelligence", role:"Applied AI · LLM", nodes:[
+      {id:"frameai", nm:"FrameAI", mt:"reasoning engine",
+        tag:"AI / LLM", p:"A structured reasoning engine that decomposes a single prompt into facts, strategies, procedures, and rationales, plus a self-reflection template that carries context across runs.",
+        stack:["Python","FastAPI","Pydantic","React","Docker"], href:"https://github.com/SrijanChallapalli/frameAI"},
+      {id:"resumate", nm:"ResuMate AI", mt:"NLP matcher",
+        tag:"AI / NLP", p:"A resume-to-job matcher with ATS-style hybrid scoring (keyword, semantic, and evidence), must-have vs. preferred skill detection, and FAANG-style bullet rewrites.",
+        stack:["Python","NLP","Semantic search","PDF/DOCX"], href:"https://github.com/SrijanChallapalli/ResuMate"},
+      {id:"apex", nm:"APEX Coach", mt:"adaptive coach",
+        tag:"AI coach", p:"An adaptive AI fitness and nutrition coach where a deterministic, tested engine does all programming and math — the LLM only parses input, explains decisions, and coaches over SSE chat.",
+        stack:["React","Vite","Python","SSE"], href:null},
+      {id:"tutor", nm:"Assessment-First Tutor", mt:"EdTech",
+        tag:"EdTech", p:"An adaptive tutor built around a diagnose–teach–verify loop: a pre-assessment pinpoints gaps, targeted lessons address exactly those gaps, then a post-assessment measures mastery.",
+        stack:["FastAPI","SQLAlchemy","React","LLM"], href:"https://github.com/SrijanChallapalli/Assessment-First-Tutor"}
+    ]},
+    { idx:"02", name:"Protocols", role:"On-chain · Solidity", nodes:[
+      {id:"secretariat", nm:"Secretariat", mt:"marketplace · ETHDenver",
+        tag:"On-chain", p:"A tokenized-asset marketplace built at ETHDenver — 17 Solidity contracts, a factory/deployer split to beat the 24 KB contract-size limit, and an off-chain XGBoost valuation engine.",
+        stack:["Solidity","Foundry","Next.js","XGBoost"], href:"https://github.com/SrijanChallapalli/Secretariat"},
+      {id:"myusd", nm:"MyUSD Stablecoin", mt:"single-collateral Dai",
+        tag:"Stablecoin", p:"A crypto-backed stablecoin pegged to $1 — users lock ETH to mint MyUSD, and the engine holds the peg with interest rates, burning, and a liquidation path.",
+        stack:["Solidity","Hardhat","Wagmi","Viem"], href:"https://github.com/SrijanChallapalli/challenge-stablecoins"},
+      {id:"dex", nm:"DEX (AMM)", mt:"constant-product",
+        tag:"DeFi", p:"A minimal Uniswap-v2-style exchange that swaps ETH ↔ token off a constant-product curve (x·y=k), with liquidity provisioning and LP shares that earn trading fees.",
+        stack:["Solidity","Hardhat","Wagmi","Viem"], href:"https://github.com/SrijanChallapalli/challenge-dex"},
+      {id:"lending", nm:"+5 more protocols", mt:"lending · oracles · RWA",
+        tag:"On-chain", p:"Over-collateralized lending, decentralized oracles (whitelist / staking / optimistic), a token vendor, a crowdfunding dApp, a dice-game exploit, and asset tokenization — the full SpeedRunEthereum run.",
+        stack:["Solidity","Hardhat","Next.js","Wagmi"], href:"/projects/#onchain"}
+    ]},
+    { idx:"03", name:"Systems", role:"Foundations · Rust", below:true, nodes:[
+      {id:"lsm", nm:"LSM Storage Engine", mt:"Rust · WAL · SSTables",
+        tag:"Systems · the thing I'm proudest of", p:"A persistent key-value database built from scratch in Rust — write-ahead log, memtable, SSTables, bloom filters, and background compaction — with WAL-replay crash recovery. This is the layer under the layer.",
+        stack:["Rust","Criterion","Linux perf"], href:"https://github.com/SrijanChallapalli/LSM-Storage-Engine"},
+      {id:"devguard", nm:"DevGuard", mt:"DevSecOps",
+        tag:"DevSecOps", p:"Zero-config DevSecOps for small teams — runs SCA, SAST, IaC, container, and secrets scans on every push and PR, dedupes and ranks findings, and opens auto-fix PRs.",
+        stack:["Python","Docker","Trivy","Semgrep","Gitleaks"], href:"https://github.com/SrijanChallapalli/DevGuard"},
+      {id:"pulse", nm:"Pulse of Profit", mt:"market data",
+        tag:"Fintech", p:"A Flask app that computes RSI, MACD, OBV, and Ichimoku indicators and renders them as interactive Plotly charts, with an automatic data-source fallback so charts stay available.",
+        stack:["Python","Flask","Plotly","Pandas"], href:"https://github.com/SrijanChallapalli/PulseOfProfit"}
+    ]}
+  ];
+
+  var stack = document.getElementById("stack");
+  var detail = document.getElementById("detail");
+  var nodeEls = {};
+
+  function makeNode(n){
+    var b = document.createElement("button");
+    b.className = "node"; b.type = "button"; b.setAttribute("data-id", n.id);
+    b.innerHTML = '<span class="dot'+(n.live?" live":"")+'"></span><span class="nm">'+n.nm+'</span><span class="mt">'+n.mt+'</span>';
+    b.addEventListener("click", function(){ select(n); });
+    nodeEls[n.id] = b;
+    return b;
+  }
+
+  LAYERS.forEach(function(layer){
+    if (layer.below){
+      var ab = document.createElement("div");
+      ab.className = "abstraction";
+      ab.innerHTML = '<span>↓ the abstraction line</span><span class="ln"></span>';
+      stack.appendChild(ab);
+    }
+    var L = document.createElement("div");
+    L.className = "layer";
+    var head = '<div class="layer-head"><span class="idx">'+layer.idx+'</span>'+
+      '<span class="name">'+layer.name+'</span><span class="role">'+layer.role+'</span></div>';
+    L.innerHTML = head;
+    var wrap = document.createElement("div");
+    wrap.className = "nodes";
+    layer.nodes.forEach(function(n){ n._layer = layer.name; wrap.appendChild(makeNode(n)); });
+    L.appendChild(wrap);
+    stack.appendChild(L);
+  });
+
+  var sub = document.createElement("div");
+  sub.className = "substrate";
+  sub.innerHTML = '<div class="t">Srijan Challapalli — the builder</div>'+
+    '<div class="d">AI @ Purdue · likes understanding systems below the abstraction layer, then moving software from an idea to something people actually use.</div>';
+  stack.appendChild(sub);
+
+  function select(n){
+    Object.keys(nodeEls).forEach(function(k){ nodeEls[k].classList.remove("active"); });
+    if (nodeEls[n.id]) nodeEls[n.id].classList.add("active");
+    var link = n.href
+      ? '<a class="go" href="'+n.href+'"'+(n.href.charAt(0)==="/"?"":' target="_blank" rel="noopener"')+'>'+(n.href.charAt(0)==="/"?"See it ":"Open ")+'→</a>'
+      : '<span class="priv">Private — happy to walk you through it</span>';
+    detail.innerHTML =
+      '<div class="dtag">'+n.tag+'</div>'+
+      '<h3>'+n.nm+'</h3>'+
+      '<div class="layer-of">'+n._layer+' layer</div>'+
+      '<p>'+n.p+'</p>'+
+      '<div class="stacklbl">Built with</div>'+
+      '<div class="chips">'+n.stack.map(function(s){return '<span class="chip">'+s+'</span>';}).join("")+'</div>'+
+      link+
+      '<div class="hint">Every node on the left is live — click through the layers.</div>';
+  }
+
+  select(LAYERS[0].nodes[0]); // open Chityap by default
+})();
+</script>
+</body>
+</html>
