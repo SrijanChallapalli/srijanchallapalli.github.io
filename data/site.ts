@@ -6,13 +6,12 @@ export const site = {
   description:
     "AI student at Purdue building software, systems, and things I wish already existed — an iOS app with 300+ users, a storage engine in Rust, and AI agents that do real work.",
   roles: ["AI Student", "Software Engineer", "Builder"],
-  /** Rendered after "AI @ Purdue," in the hero. */
-  intro: "building software, systems, and things I wish already existed.",
   email: "srijanchallapalli@gmail.com",
   resume: "/resume.pdf",
   links: {
     github: "https://github.com/SrijanChallapalli",
     linkedin: "https://linkedin.com/in/srijan-challapalli",
+    x: "https://x.com/dongaranga",
   },
   location: {
     label: "West Lafayette, IN",
