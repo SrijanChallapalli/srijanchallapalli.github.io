@@ -1,5 +1,4 @@
 import { site } from "@/data/site";
-import type { Status } from "@/lib/status";
 import { HeroName } from "./HeroName";
 import { StatusBar } from "./StatusBar";
 
@@ -13,7 +12,7 @@ const heroLinks = [
 
 const delay = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
-export function Hero({ status }: { status: Status }) {
+export function Hero() {
   return (
     <div className="container-page flex min-h-[100svh] flex-col pt-28 pb-8 md:pt-32">
       <div className="flex flex-1 flex-col justify-center">
@@ -79,7 +78,7 @@ export function Hero({ status }: { status: Status }) {
       </div>
 
       <div className="fade-in mt-14 border-t border-rule pt-6 md:mt-16" style={delay(650)}>
-        <StatusBar status={status} />
+        <StatusBar />
       </div>
     </div>
   );

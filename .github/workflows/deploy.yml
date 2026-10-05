@@ -3,9 +3,6 @@ name: Deploy
 on:
   push:
     branches: [main]
-  # Rebuild periodically so the build-time Spotify/Steam status stays fresh.
-  schedule:
-    - cron: "17 */3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -28,12 +25,6 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-        env:
-          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
-          STEAM_ID: ${{ secrets.STEAM_ID }}
       # GitHub Pages runs Jekyll unless told not to, which hides `_next/`.
       - run: touch out/.nojekyll
       - uses: actions/upload-pages-artifact@v3

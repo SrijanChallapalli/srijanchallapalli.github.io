@@ -12,13 +12,13 @@ function Entry({ item, defaultOpen }: { item: Experience; defaultOpen: boolean }
   const panelId = useId();
 
   return (
-    <li className="grid-page border-t border-rule py-8 md:py-10">
-      <div className="col-span-12 md:col-span-3">
+    <li className="flex flex-col gap-4 border-t border-rule py-8 sm:flex-row sm:gap-8">
+      <div className="sm:w-28 sm:shrink-0">
         <p className="font-mono text-sm text-ink-2 tabular-nums">{item.year}</p>
         <p className="t-meta mt-1 text-ink-3">{item.period}</p>
       </div>
 
-      <div className="col-span-12 mt-4 md:col-span-9 md:mt-0">
+      <div className="min-w-0 flex-1">
         <h3 className="t-h4 font-semibold">
           {item.company}
           <span className="font-normal text-ink-2"> — {item.role}</span>

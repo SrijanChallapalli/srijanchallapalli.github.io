@@ -7,14 +7,18 @@ type Props = {
   /** Small mono note beside the title, e.g. a count. */
   note?: string;
   aside?: React.ReactNode;
+  /** Smaller title for half-width columns. */
+  compact?: boolean;
 };
 
 /** Big section title — the main structural device of the page. */
-export function SectionHeader({ title, id, note, aside }: Props) {
+export function SectionHeader({ title, id, note, aside, compact = false }: Props) {
   return (
-    <div className="mb-14 flex flex-col gap-6 md:mb-20 md:flex-row md:items-end md:justify-between">
+    <div
+      className={`flex flex-col gap-6 md:flex-row md:items-end md:justify-between ${compact ? "mb-10 md:mb-12" : "mb-14 md:mb-20"}`}
+    >
       <div className="flex items-start gap-2">
-        <SplitHeading text={title} id={id} className="t-h2" />
+        <SplitHeading text={title} id={id} className={compact ? "t-h2 lg:!text-[clamp(2.5rem,4vw,4rem)]" : "t-h2"} />
         {note && (
           <Reveal as="span" delay={0.2} className="t-meta mt-1 text-ink-3 md:mt-3">
             ({note})
