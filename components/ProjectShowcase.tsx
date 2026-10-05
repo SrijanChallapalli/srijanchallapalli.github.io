@@ -74,7 +74,8 @@ export function ProjectFeature({ project, index }: { project: Project; index: nu
         </p>
         <StackLine items={project.stack} />
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-ink-2">
-          {project.live && <ArrowLink href={project.live}>Live</ArrowLink>}
+          {project.live && <ArrowLink href={project.live}>Website</ArrowLink>}
+          {project.appStore && <ArrowLink href={project.appStore}>App Store</ArrowLink>}
           {project.github && <ArrowLink href={project.github}>GitHub</ArrowLink>}
           {project.privateNote && <span className="t-meta text-ink-3">{project.privateNote}</span>}
         </div>

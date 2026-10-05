@@ -13,6 +13,7 @@ export type Project = {
   stack: string[];
   github?: string;
   live?: string;
+  appStore?: string;
   /** Shown when there is no public repo. */
   privateNote?: string;
   /** Visual for the project block (real screenshots or a code-drawn diagram). */
@@ -30,8 +31,9 @@ export const projects: Project[] = [
       "Co-founded and shipped to 300+ beta users. Real-time feeds, offline retry, push, and an on-device Apple Vision rep counter — on a Supabase/Postgres backend locked down by 60+ row-level security policies.",
     facts: ["300+ beta users", "~5,000 posts", "60+ RLS policies"],
     stack: ["Swift", "SwiftUI", "Supabase", "PostgreSQL", "Apple Vision", "HealthKit", "APNs"],
-    github: "https://github.com/SrijanChallapalli/ChitYap",
     live: "https://chityap.com/",
+    appStore: "https://apps.apple.com/us/app/chityap-challenges/id6757008313",
+    privateNote: "Private repo",
     visual: "chityap",
   },
   {
@@ -208,4 +210,4 @@ export const archive: { group: string; items: ArchiveProject[] }[] = [
 ];
 
 /** Where a project's title should take you: the live product, else the repo. */
-export const primaryLink = (p: Project) => p.live ?? p.github;
+export const primaryLink = (p: Project) => p.live ?? p.appStore ?? p.github;
