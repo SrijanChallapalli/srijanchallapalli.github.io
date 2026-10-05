@@ -13,6 +13,7 @@ export function Navigation() {
   const [compact, setCompact] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
+  const [crumb, setCrumb] = useState("Index");
   const menuButton = useRef<HTMLButtonElement>(null);
 
   // Compact after a little scroll.
@@ -36,6 +37,34 @@ export function Navigation() {
     );
     sections.forEach((s) => io.observe(s));
     return () => io.disconnect();
+  }, [pathname]);
+
+  // Breadcrumb beside the logo: the last tagged section whose top has passed
+  // the upper third of the screen. In the desktop split the left column sits
+  // beside the work, so only the right column counts there.
+  useEffect(() => {
+    if (pathname !== "/") return setCrumb(pathname.startsWith("/projects") ? "All projects" : "");
+    const wide = window.matchMedia("(min-width: 1024px)");
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const line = window.innerHeight * 0.35;
+      let label = "Index";
+      for (const el of document.querySelectorAll<HTMLElement>("[data-crumb]")) {
+        if (wide.matches && el.closest("[data-col=left]")) continue;
+        if (el.getBoundingClientRect().top < line) label = el.dataset.crumb ?? label;
+      }
+      setCrumb(label);
+    };
+    const onScroll = () => (frame ||= requestAnimationFrame(update));
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    wide.addEventListener("change", update);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      wide.removeEventListener("change", update);
+    };
   }, [pathname]);
 
   // Close the mobile menu on navigation / Escape, and lock scroll while open.
@@ -74,13 +103,32 @@ export function Navigation() {
       >
         <Link
           href="/"
-          className="group flex items-center gap-2 text-[15px] font-semibold tracking-[-0.03em]"
+          className="group flex min-w-0 items-center gap-2 text-[15px] tracking-[-0.03em]"
           aria-label={`${site.name} — home`}
         >
-          <span className="relative">
-            {site.shortName}
-            <span className="absolute -top-0.5 -right-2 size-1.5 rounded-full bg-accent transition-transform duration-300 group-hover:scale-150" />
-          </span>
+          <span className="font-semibold">{site.shortName}</span>
+          {crumb && (
+            <>
+              <span className="text-accent transition-transform duration-300 group-hover:rotate-12" aria-hidden>
+                /
+              </span>
+              {/* Each new label slides up in place of the old one. */}
+              <span className="relative inline-grid overflow-hidden" aria-hidden>
+                <AnimatePresence initial={false} mode="popLayout">
+                  <m.span
+                    key={crumb}
+                    initial={{ y: "100%", opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: "-100%", opacity: 0 }}
+                    transition={{ duration: 0.35, ease: EASE }}
+                    className="truncate text-ink-2 [grid-area:1/1]"
+                  >
+                    {crumb}
+                  </m.span>
+                </AnimatePresence>
+              </span>
+            </>
+          )}
         </Link>
 
         <div className="flex items-center gap-1 md:gap-2">

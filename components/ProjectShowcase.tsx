@@ -6,10 +6,9 @@ import { ArrowLink, StackLine } from "./SectionHeader";
 
 /**
  * One project: big visual, then a short caption-like block underneath.
- * Visual alternates sides on wide screens; no case-study detour.
+ * Sized for a half-width column; no case-study detour.
  */
 export function ProjectFeature({ project, index }: { project: Project; index: number }) {
-  const flip = index % 2 === 1;
   const num = String(index + 1).padStart(2, "0");
   const href = primaryLink(project);
 
@@ -32,21 +31,17 @@ export function ProjectFeature({ project, index }: { project: Project; index: nu
   return (
     <article
       data-hover-root
-      className="group/project grid-page items-end gap-y-8"
+      data-crumb={`Work / ${project.name}`}
+      className="group/project flex flex-col gap-8"
       aria-labelledby={`project-${project.slug}`}
     >
-      <Reveal className={`col-span-12 lg:col-span-8 ${flip ? "lg:order-2 lg:col-start-5" : ""}`} y={24}>
+      <Reveal y={24}>
         <ParallaxFrame className="aspect-[4/3] rounded-[4px] bg-paper-2 md:aspect-[16/10]" strength={8}>
           <ProjectArt project={project} />
         </ParallaxFrame>
       </Reveal>
 
-      <Reveal
-        delay={0.1}
-        className={`col-span-12 flex flex-col gap-5 lg:col-span-4 ${
-          flip ? "lg:order-1 lg:col-start-1 lg:pr-6" : "lg:col-start-9 lg:pl-6"
-        }`}
-      >
+      <Reveal delay={0.1} className="flex flex-col gap-5">
         <p className="t-meta flex gap-3 text-ink-3">
           <span>{num}</span>
           <span>{project.year}</span>
@@ -86,7 +81,7 @@ export function ProjectFeature({ project, index }: { project: Project; index: nu
 
 export function ProjectShowcase({ projects }: { projects: Project[] }) {
   return (
-    <div className="flex flex-col gap-24 md:gap-40">
+    <div className="flex flex-col gap-20 md:gap-28">
       {projects.map((p, i) => (
         <ProjectFeature key={p.slug} project={p} index={i} />
       ))}
