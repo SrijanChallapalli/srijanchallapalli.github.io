@@ -30,9 +30,8 @@ export const nav = [
 
 export const about = {
   paragraphs: [
-    "I'm an AI student at Purdue, but honestly most of what I know came from building things that turned out way harder than I expected. I like figuring out what's actually going on underneath: why the database didn't lose anything when it crashed, why the feed suddenly got slow, why the model got the math wrong.",
-    "I'd rather ship something a few hundred people actually use than polish another tutorial project. Right now that mostly means AI tools that do careful work, systems I can benchmark, and apps I'd want on my own phone.",
-    "Before code, it was badminton. I was ranked No. 1 in the country at one point and made two national semifinals. That's probably where I learned to keep showing up and putting in the reps.",
+    "I'm an AI student at Purdue. Most of what I know came from building things that started as ways to make my own life easier.",
+    "Before code, it was badminton. I was ranked No. 1 in the country.",
   ],
   facts: [
     ["Based in", "West Lafayette, Indiana"],
