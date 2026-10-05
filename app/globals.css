@@ -1,0 +1,322 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------ */
+/* Tokens                                                              */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --paper: #f3f1ec;
+  --paper-2: #e9e6df; /* visual surfaces */
+  --paper-3: #dedad1;
+  --ink: #121211;
+  --ink-2: #57544e; /* secondary text — 7:1 on paper */
+  --ink-3: #8a867e; /* tertiary / meta */
+  --rule: rgb(18 18 17 / 0.12);
+  --accent: #d93f14;
+  --accent-ink: #b8340f; /* accent used as text */
+  --selection: rgb(217 63 20 / 0.18);
+
+  --gutter: clamp(16px, 4vw, 48px);
+  --section: clamp(96px, 14vw, 200px);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --paper: #0e0e0d;
+  --paper-2: #181816;
+  --paper-3: #23221f;
+  --ink: #edebe6;
+  --ink-2: #a8a49c;
+  --ink-3: #6f6c66;
+  --rule: rgb(237 235 230 / 0.12);
+  --accent: #ff6a3d;
+  --accent-ink: #ff7a52;
+  --selection: rgb(255 106 61 / 0.28);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-paper-3: var(--paper-3);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --ease-out-expo: var(--ease-out);
+  --breakpoint-xs: 30rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-padding-top: 88px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--paper);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  line-height: 1.6;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--selection);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Theme switch: crossfade colors without animating everything else. */
+html.theme-transition,
+html.theme-transition * {
+  transition:
+    background-color 300ms var(--ease-out),
+    color 300ms var(--ease-out),
+    border-color 300ms var(--ease-out) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* Type scale                                                          */
+/* ------------------------------------------------------------------ */
+
+@utility t-display {
+  font-size: clamp(3.5rem, 19vw, 16.5rem);
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  font-weight: 600;
+}
+
+@utility t-h1 {
+  font-size: clamp(2.75rem, 8vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  font-weight: 600;
+}
+
+@utility t-h2 {
+  font-size: clamp(2.5rem, 6.4vw, 5.75rem);
+  line-height: 0.95;
+  letter-spacing: -0.048em;
+  font-weight: 600;
+}
+
+@utility t-h3 {
+  font-size: clamp(2rem, 4.6vw, 4.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.042em;
+}
+
+@utility t-h4 {
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+@utility t-lead {
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  line-height: 1.35;
+  letter-spacing: -0.018em;
+}
+
+@utility t-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------------ */
+/* Layout                                                              */
+/* ------------------------------------------------------------------ */
+
+@utility container-page {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility grid-page {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(12px, 2vw, 32px);
+}
+
+@utility section-space {
+  padding-block: var(--section);
+}
+
+/* ------------------------------------------------------------------ */
+/* Links & arrows                                                      */
+/* ------------------------------------------------------------------ */
+
+/* Underline that draws in from the left on hover. */
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 300ms var(--ease-out);
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 250ms var(--ease-out);
+}
+.group:hover .arrow-ne,
+.group:focus-visible .arrow-ne,
+.arrow-ne:hover {
+  transform: translate(2px, -2px);
+}
+.group:hover .arrow-e,
+.group:focus-visible .arrow-e {
+  transform: translateX(4px);
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero: rise-in that runs from first paint, no JS required            */
+/* ------------------------------------------------------------------ */
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise-mask {
+  display: inline-block;
+  overflow: clip;
+  overflow-clip-margin: 0.08em;
+  vertical-align: top;
+  padding-bottom: 0.04em;
+}
+.rise {
+  display: inline-block;
+  animation: rise 800ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 32ms);
+}
+.fade-in {
+  animation: fade-up 700ms var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Proximity weight on the hero name (driven by --w from JS). */
+.weight-letter {
+  font-variation-settings: "wght" var(--w, 600);
+  transition: font-variation-settings 400ms var(--ease-out);
+}
+
+/* Live dot */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.live-dot {
+  animation: pulse 2s var(--ease-in-out) infinite;
+}
+
+/* LSM visual: WAL cells append in sequence, one SSTable "compacts" down. */
+@keyframes lsm-wal {
+  0%,
+  8% {
+    opacity: 0.15;
+  }
+  14%,
+  100% {
+    opacity: 0.85;
+  }
+}
+.lsm-wal {
+  animation: lsm-wal 3.6s steps(1, end) infinite;
+}
+@keyframes lsm-compact {
+  0%,
+  60% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  85% {
+    transform: translateY(140%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+.lsm-compact {
+  animation: lsm-compact 4.8s var(--ease-in-out) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lsm-wal,
+  .lsm-compact,
+  .rise,
+  .fade-in,
+  .live-dot {
+    animation: none !important;
+  }
+  .weight-letter,
+  .arrow {
+    transition: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
