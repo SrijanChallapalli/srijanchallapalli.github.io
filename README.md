@@ -32,20 +32,13 @@ ApplyPilot uses the app running on its fictional demo seed, and the LSM engine i
 | --- | --- | --- |
 | Local time | `Intl` in the browser | Live |
 | Weather | [Open-Meteo](https://open-meteo.com) (no key) — `lib/weather.ts` | Live, in the browser |
-| Listening | Spotify Web API — `lib/spotify.ts` | Build time |
-| Playing | Steam Web API — `lib/steam.ts` | Build time |
-| Status | `data/status.ts` | Build time |
+| Listening | [Last.fm](https://www.last.fm/api) (Spotify scrobbles to it) — `lib/lastfm.ts` | Live, in the browser, every minute |
+| Playing | `data/status.ts` | Hand-edited |
+| Status | `data/status.ts` | Hand-edited |
 
-GitHub Pages can't hold secrets, so Spotify and Steam are fetched **during the build** and the
-deploy workflow rebuilds every 3 hours. Without credentials the strip falls back to
-`data/status.ts`. To connect them, add these repository secrets (Settings → Secrets → Actions):
-
-- `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN` — create an app at
-  developer.spotify.com and get a refresh token with the `user-read-currently-playing` and
-  `user-read-recently-played` scopes.
-- `STEAM_API_KEY`, `STEAM_ID` — from steamcommunity.com/dev/apikey; your game details must be public.
-
-For local testing, copy `.env.example` to `.env.local`.
+To turn on Listening: connect Spotify at last.fm/settings/applications, create an API key at
+last.fm/api/account/create, and fill in `lastfm` in `data/site.ts`. The key is read-only and meant
+to be public. With it blank, the Listening slot is hidden.
 
 ## Deploying
 
@@ -61,7 +54,7 @@ components/     Hero, StatusBar, ProjectShowcase, ExperienceTimeline, AboutSecti
   motion/       Reveal, SplitHeading, ParallaxFrame — the whole motion system
   visuals/      project visuals (screenshots + one code-drawn diagram)
 data/           all content
-lib/            spotify.ts, steam.ts, weather.ts, status.ts
+lib/            lastfm.ts, weather.ts
 ```
 
 Motion respects `prefers-reduced-motion`: transforms are dropped and only opacity fades remain.

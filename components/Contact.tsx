@@ -5,7 +5,7 @@ import { ArrowLink } from "./SectionHeader";
 
 export function Contact() {
   return (
-    <section aria-labelledby="contact-title" id="contact" className="container-page section-space border-t border-rule">
+    <section aria-labelledby="contact-title" id="contact" data-crumb="Contact" className="container-page section-space border-t border-rule">
       <p className="t-meta mb-8 text-ink-3">Contact</p>
       <SplitHeading
         id="contact-title"
