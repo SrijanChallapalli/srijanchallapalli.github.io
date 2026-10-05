@@ -164,6 +164,7 @@ export function Navigation() {
             <div className="container-page absolute inset-x-0 bottom-8 flex gap-6 t-meta text-ink-2">
               <a href={site.resume} target="_blank" rel="noopener">Resume ↗</a>
               <a href={site.links.github} target="_blank" rel="noopener">GitHub ↗</a>
+              <a href={site.links.x} target="_blank" rel="noopener">X ↗</a>
               <a href={`mailto:${site.email}`}>Email ↗</a>
             </div>
           </m.div>

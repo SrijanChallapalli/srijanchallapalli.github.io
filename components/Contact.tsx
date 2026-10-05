@@ -25,6 +25,7 @@ export function Contact() {
         <div className="flex gap-6 text-ink-2">
           <ArrowLink href={site.links.github}>GitHub</ArrowLink>
           <ArrowLink href={site.links.linkedin}>LinkedIn</ArrowLink>
+          <ArrowLink href={site.links.x}>X</ArrowLink>
           <ArrowLink href={site.resume}>Resume</ArrowLink>
         </div>
       </Reveal>
