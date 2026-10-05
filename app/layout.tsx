@@ -45,7 +45,7 @@ const personLd = {
   jobTitle: "Software Engineer",
   affiliation: { "@type": "CollegeOrUniversity", name: "Purdue University" },
   address: { "@type": "PostalAddress", addressLocality: "West Lafayette", addressRegion: "IN" },
-  sameAs: [site.links.github, site.links.linkedin],
+  sameAs: [site.links.github, site.links.linkedin, site.links.x],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
