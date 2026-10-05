@@ -43,9 +43,18 @@ export function Hero({ status }: { status: Status }) {
                 href="https://www.purdue.edu/"
                 target="_blank"
                 rel="noopener"
-                className="purdue font-semibold"
+                className="group/purdue inline-flex items-baseline whitespace-nowrap"
+                aria-label="Purdue University"
               >
-                Purdue
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/purdue-p.webp"
+                  alt=""
+                  width={320}
+                  height={171}
+                  className="mr-[0.03em] h-[0.86em] w-auto translate-y-[0.07em] self-baseline transition-transform duration-300 ease-[var(--ease-out)] group-hover/purdue:-rotate-6"
+                />
+                <span aria-hidden>urdue</span>
               </a>
               , {site.intro}
             </p>

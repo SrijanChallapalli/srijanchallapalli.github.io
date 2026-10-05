@@ -17,7 +17,6 @@
   --accent: #d93f14;
   --accent-ink: #b8340f; /* accent used as text */
   --selection: rgb(217 63 20 / 0.18);
-  --purdue: #8e6f3e; /* Purdue "Aged" gold — readable on paper */
 
   --gutter: clamp(16px, 4vw, 48px);
   --section: clamp(96px, 14vw, 200px);
@@ -38,7 +37,6 @@
   --accent: #ff6a3d;
   --accent-ink: #ff7a52;
   --selection: rgb(255 106 61 / 0.28);
-  --purdue: #cfb991; /* Purdue Boilermaker gold */
   color-scheme: dark;
 }
 
@@ -254,24 +252,6 @@ html.theme-transition * {
 .weight-letter {
   font-variation-settings: "wght" var(--w, 600);
   transition: font-variation-settings 400ms var(--ease-out);
-}
-
-/* "Purdue" in the hero: brand gold with an underline that fills on hover. */
-.purdue {
-  color: var(--purdue);
-  background-image: linear-gradient(var(--purdue), var(--purdue));
-  background-size: 100% 2px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  padding-bottom: 1px;
-  transition:
-    color 250ms var(--ease-out),
-    background-size 300ms var(--ease-out);
-}
-.purdue:hover,
-.purdue:focus-visible {
-  color: var(--paper);
-  background-size: 100% 100%;
 }
 
 /* Live dot */
