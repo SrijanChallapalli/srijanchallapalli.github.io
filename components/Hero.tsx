@@ -37,7 +37,18 @@ export function Hero({ status }: { status: Status }) {
             className="fade-in mt-10 max-w-[30rem] md:mt-12 lg:absolute lg:top-[0.6vw] lg:right-0 lg:mt-0 lg:w-[34%] xl:w-[32%]"
             style={delay(450)}
           >
-            <p className="t-lead text-balance">{site.intro}</p>
+            <p className="t-lead text-balance">
+              AI @{" "}
+              <a
+                href="https://www.purdue.edu/"
+                target="_blank"
+                rel="noopener"
+                className="purdue font-semibold"
+              >
+                Purdue
+              </a>
+              , {site.intro}
+            </p>
             <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
               {heroLinks.map((l) => (
                 <li key={l.label}>
