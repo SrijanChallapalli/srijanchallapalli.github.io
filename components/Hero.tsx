@@ -53,7 +53,7 @@ export function Hero({ status }: { status: Status }) {
                   alt=""
                   width={320}
                   height={171}
-                  className="-mr-[0.13em] h-[0.86em] w-auto translate-y-[0.07em] self-baseline transition-transform duration-300 ease-[var(--ease-out)] group-hover/purdue:-rotate-6"
+                  className="-mr-[0.06em] -ml-[0.04em] h-[0.76em] w-auto translate-y-[0.02em] self-baseline transition-transform duration-300 ease-[var(--ease-out)] group-hover/purdue:-rotate-6"
                 />
                 <span aria-hidden>urdue</span>
               </a>
