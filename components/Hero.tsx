@@ -6,6 +6,7 @@ import { StatusBar } from "./StatusBar";
 const heroLinks = [
   { label: "GitHub", href: site.links.github, external: true },
   { label: "LinkedIn", href: site.links.linkedin, external: true },
+  { label: "X", href: site.links.x, external: true },
   { label: "Resume", href: site.resume, external: true },
   { label: "Email", href: `mailto:${site.email}`, external: false },
 ];
@@ -32,13 +33,32 @@ export function Hero({ status }: { status: Status }) {
         <div className="relative">
           <HeroName lines={["Srijan", "Challapalli"]} />
 
-          {/* On wide screens the intro sits in the empty space beside the first name. */}
+          {/* On wide screens this sits in the empty space beside the first name. */}
           <div
-            className="fade-in mt-10 max-w-[30rem] md:mt-12 lg:absolute lg:top-[0.6vw] lg:right-0 lg:mt-0 lg:w-[34%] xl:w-[32%]"
+            className="fade-in mt-8 md:mt-10 lg:absolute lg:top-[2.2vw] lg:right-0 lg:mt-0"
             style={delay(450)}
           >
-            <p className="t-lead text-balance">{site.intro}</p>
-            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+            <p className="text-[clamp(2.25rem,4.6vw,4.25rem)] leading-none font-semibold tracking-[-0.045em]">
+              AI @{" "}
+              <a
+                href="https://www.purdue.edu/"
+                target="_blank"
+                rel="noopener"
+                className="group/purdue inline-flex items-baseline whitespace-nowrap"
+                aria-label="Purdue University"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/purdue-p.webp"
+                  alt=""
+                  width={320}
+                  height={171}
+                  className="-mr-[0.06em] -ml-[0.04em] h-[0.76em] w-auto translate-y-[0.02em] self-baseline transition-transform duration-300 ease-[var(--ease-out)] group-hover/purdue:-rotate-6"
+                />
+                <span aria-hidden>urdue</span>
+              </a>
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 sm:gap-x-6">
               {heroLinks.map((l) => (
                 <li key={l.label}>
                   <a
