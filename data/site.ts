@@ -19,6 +19,15 @@ export const site = {
     latitude: 40.4259,
     longitude: -86.9081,
   },
+  /**
+   * Powers "Listening" in the status strip. Connect Spotify to Last.fm once
+   * (last.fm/settings/applications), then create a key at last.fm/api/account/create.
+   * The key is read-only and safe to publish. Leave blank to hide the live track.
+   */
+  lastfm: {
+    user: "schallap",
+    apiKey: "bb8af69b7c29fa55660a4698f2337d3c",
+  },
 } as const;
 
 export const nav = [

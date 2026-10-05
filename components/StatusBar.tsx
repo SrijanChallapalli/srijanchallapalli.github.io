@@ -2,18 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { site } from "@/data/site";
+import { status } from "@/data/status";
+import { getRecentTrack, type Track } from "@/lib/lastfm";
 import { getWeather, type Weather } from "@/lib/weather";
-import type { Status } from "@/lib/status";
 
 const timeFormat = new Intl.DateTimeFormat("en-US", {
   timeZone: site.location.timeZone,
   hour: "numeric",
   minute: "2-digit",
-});
-const hourFormat = new Intl.DateTimeFormat("en-US", {
-  timeZone: site.location.timeZone,
-  hour: "numeric",
-  hourCycle: "h23",
 });
 
 /** Current time, re-rendered exactly on each minute boundary. */
@@ -50,22 +46,43 @@ function useWeather() {
   return { weather, failed };
 }
 
-const ago = (iso: string, now: Date) => {
-  const mins = Math.max(0, Math.round((now.getTime() - new Date(iso).getTime()) / 60_000));
+const { lastfm } = site;
+const hasLastfm = Boolean(lastfm.user && lastfm.apiKey);
+
+/** Latest Last.fm track, refreshed every minute while the tab is visible. */
+function useTrack() {
+  const [track, setTrack] = useState<Track | null | undefined>(undefined);
+  const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    if (!hasLastfm) return;
+    let ctrl = new AbortController();
+    const load = () => {
+      ctrl.abort();
+      ctrl = new AbortController();
+      getRecentTrack(lastfm.user, lastfm.apiKey, ctrl.signal)
+        .then((t) => (setTrack(t), setFailed(false)))
+        .catch((e) => e?.name !== "AbortError" && setFailed(true));
+    };
+    load();
+    const timer = window.setInterval(() => document.visibilityState === "visible" && load(), 60_000);
+    const onVisible = () => document.visibilityState === "visible" && load();
+    document.addEventListener("visibilitychange", onVisible);
+    return () => {
+      ctrl.abort();
+      window.clearInterval(timer);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, []);
+  return { track, failed };
+}
+
+const ago = (then: Date, now: Date) => {
+  const mins = Math.max(0, Math.round((now.getTime() - then.getTime()) / 60_000));
+  if (mins < 1) return "just now";
   if (mins < 60) return `${mins}m ago`;
   const hrs = Math.round(mins / 60);
   return hrs < 48 ? `${hrs}h ago` : `${Math.round(hrs / 24)}d ago`;
 };
-
-/** A small line about what Srijan is probably doing at this hour. */
-function dayPart(now: Date) {
-  const h = Number(hourFormat.format(now));
-  if (h < 6) return "probably asleep";
-  if (h < 9) return "early start";
-  if (h < 17) return "class / building";
-  if (h < 22) return "building";
-  return "late-night commits";
-}
 
 function Item({
   label,
@@ -87,18 +104,17 @@ function Item({
 const Placeholder = () => <span className="inline-block h-[1em] w-16 animate-pulse rounded-sm bg-paper-2 align-middle" />;
 
 /**
- * The "currently" strip. Time and weather are live in the browser; music and
- * games are collected at build time (see lib/status.ts) and fall back to
- * data/status.ts when no API keys are configured.
+ * The "currently" strip. Time, weather and music are fetched live in the
+ * browser; Playing and Status are hand-edited in data/status.ts.
  */
-export function StatusBar({ status }: { status: Status }) {
+export function StatusBar() {
   const now = useNow();
   const { weather, failed } = useWeather();
-  const { listening, playing } = status;
+  const { track, failed: trackFailed } = useTrack();
 
   return (
     <section aria-label="Currently">
-      <dl className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-6">
+      <dl className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:auto-cols-fr lg:grid-flow-col">
         <Item label="Location">
           <span className="inline-flex items-center gap-2">
             <span className="live-dot size-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
@@ -124,38 +140,44 @@ export function StatusBar({ status }: { status: Status }) {
             <span>
               <time className="font-mono text-[14px] tabular-nums" dateTime={now.toISOString()}>
                 {timeFormat.format(now)}
-              </time>{" "}
-              <span className="text-ink-2">{dayPart(now)}</span>
+              </time>
             </span>
           ) : (
             <Placeholder />
           )}
         </Item>
 
-        <Item label={listening.nowPlaying ? "Listening now" : "Last played"}>
-          <a
-            href={listening.url}
-            target="_blank"
-            rel="noopener"
-            className="link-underline"
-            title={`${listening.title} — ${listening.artist}`}
-          >
-            {listening.title}
-            <span className="text-ink-2"> — {listening.artist}</span>
-          </a>
-          {listening.live && !listening.nowPlaying && listening.playedAt && now && (
-            <span className="ml-1.5 font-mono text-[12px] text-ink-3">{ago(listening.playedAt, now)}</span>
-          )}
-        </Item>
+        {hasLastfm && (
+          <Item label={track?.nowPlaying ? "Listening to" : "Last listened to"}>
+            {track ? (
+              <>
+                <a
+                  href={track.url}
+                  target="_blank"
+                  rel="noopener"
+                  className="link-underline"
+                  title={`${track.title} — ${track.artist}`}
+                >
+                  {track.title}
+                  <span className="text-ink-2"> — {track.artist}</span>
+                </a>
+                {track.nowPlaying ? (
+                  <span className="live-dot ml-2 inline-block size-1.5 rounded-full bg-accent align-middle" aria-hidden />
+                ) : (
+                  track.playedAt &&
+                  now && <span className="ml-1.5 font-mono text-[12px] text-ink-3">{ago(track.playedAt, now)}</span>
+                )}
+              </>
+            ) : track === null || trackFailed ? (
+              <span className="text-ink-2">Nothing recently</span>
+            ) : (
+              <Placeholder />
+            )}
+          </Item>
+        )}
 
         <Item label="Playing">
-          {playing.url ? (
-            <a href={playing.url} target="_blank" rel="noopener" className="link-underline" title={playing.name}>
-              {playing.name}
-            </a>
-          ) : (
-            <span title={playing.name}>{playing.name}</span>
-          )}
+          <span title={status.playing}>{status.playing}</span>
         </Item>
 
         <Item label="Status">
