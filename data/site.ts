@@ -28,6 +28,14 @@ export const site = {
     user: "schallap",
     apiKey: "bb8af69b7c29fa55660a4698f2337d3c",
   },
+  /**
+   * View tracking via GoatCounter (free, no cookies). Claim a code once at
+   * goatcounter.com; the subdomain becomes <code>.goatcounter.com and stats
+   * live there. Leave blank to disable.
+   */
+  analytics: {
+    goatcounter: "schallap",
+  },
 } as const;
 
 export const nav = [

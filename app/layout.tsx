@@ -5,6 +5,7 @@ import { site } from "@/data/site";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { Analytics } from "@/components/Analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="main">{children}</main>
           <Footer />
         </MotionProvider>
+        <Analytics />
       </body>
     </html>
   );
