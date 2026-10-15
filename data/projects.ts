@@ -1,4 +1,4 @@
-export type VisualKind = "chityap" | "lsm" | "applypilot" | "diligence";
+export type VisualKind = "chityap" | "lsm" | "hunch" | "diligence";
 
 export type Project = {
   slug: string;
@@ -50,17 +50,17 @@ export const projects: Project[] = [
     visual: "lsm",
   },
   {
-    slug: "applypilot",
-    name: "ApplyPilot",
+    slug: "hunch",
+    name: "Hunch",
     year: "2026",
-    category: "Full Stack · AI",
-    oneLiner: "A human-in-the-loop job search platform that ranks roles — and never applies for you.",
+    category: "On-chain · Full Stack",
+    oneLiner: "A prediction market where every YES/NO share is fully collateralized by ETH.",
     blurb:
-      "Ingests live postings from Greenhouse, Ashby, and Lever across ~30 companies, ranks them with explainable scoring and hard eligibility checks, and prepares review-ready applications.",
-    facts: ["~30 companies", "21 API routes", "64+ tests"],
-    stack: ["TypeScript", "Next.js", "PostgreSQL", "Vercel", "Vitest"],
-    privateNote: "Private repo",
-    visual: "applypilot",
+      "Anyone opens a market, seeds it with ETH, and trades the outcome on a constant-product AMM — held solvent by an invariant that pins the contract's balance to shares outstanding. A crash-proof Postgres indexer keeps the books and recovers without double-counting.",
+    facts: ["7,500 simulated ops", "0 solvency failures", "p99 ≤ 118ms indexer"],
+    stack: ["Solidity", "Hardhat", "TypeScript", "Next.js", "PostgreSQL"],
+    github: "https://github.com/SrijanChallapalli/Hunch",
+    visual: "hunch",
   },
   {
     slug: "due-diligence-agent",

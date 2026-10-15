@@ -3,8 +3,6 @@
  * honest and update it when it changes.
  */
 export const status = {
-  /** What I've been playing lately. */
-  playing: "Nothing recently",
   /** Free text — what I'm heads-down on this week. */
-  doing: "Interning at MergeWorks, shipping ApplyPilot",
+  doing: "Software engineering — co-building at MergeWorks, shipping Hunch",
 };
