@@ -301,9 +301,20 @@ html.theme-transition * {
   animation: lsm-compact 4.8s var(--ease-in-out) infinite;
 }
 
+/* Hunch visual: each market's YES bar fills to its current price on reveal. */
+@keyframes hunch-fill {
+  from {
+    width: 0;
+  }
+}
+.hunch-fill {
+  animation: hunch-fill 1.1s var(--ease-out) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lsm-wal,
   .lsm-compact,
+  .hunch-fill,
   .rise,
   .fade-in,
   .live-dot {

@@ -1,13 +1,13 @@
 import type { Project, VisualKind } from "@/data/projects";
 import { ChitYapVisual } from "./ChitYapVisual";
 import { LsmVisual } from "./LsmVisual";
-import { ApplyPilotVisual } from "./ApplyPilotVisual";
+import { HunchVisual } from "./HunchVisual";
 import { DiligenceVisual } from "./DiligenceVisual";
 
 const visuals: Record<VisualKind, () => React.JSX.Element> = {
   chityap: ChitYapVisual,
   lsm: LsmVisual,
-  applypilot: ApplyPilotVisual,
+  hunch: HunchVisual,
   diligence: DiligenceVisual,
 };
 

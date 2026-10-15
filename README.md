@@ -18,11 +18,11 @@ Everything on the page is data-driven — you shouldn't need to touch components
 | `data/site.ts` | Name, intro, links, location, About copy, **Now** list, **Stack** |
 | `data/projects.ts` | Featured projects (home) and the archive on `/projects` |
 | `data/experience.ts` | Experience timeline |
-| `data/status.ts` | Fallback values for the status strip (song, game, what you're doing) |
+| `data/status.ts` | Fallback values for the status strip (what you're doing) |
 
 **Project visuals** live in `components/visuals/`, with images in `public/projects/<slug>/`:
 ChitYap uses its App Store screenshots, Dillon AI uses its dashboard's Example Mode (mock deal),
-ApplyPilot uses the app running on its fictional demo seed, and the LSM engine is a code-drawn diagram.
+and the LSM engine and Hunch are code-drawn diagrams.
 
 **Resume:** replace `public/resume.pdf`, and keep `data/experience.ts` in sync with it.
 
@@ -33,7 +33,6 @@ ApplyPilot uses the app running on its fictional demo seed, and the LSM engine i
 | Local time | `Intl` in the browser | Live |
 | Weather | [Open-Meteo](https://open-meteo.com) (no key) — `lib/weather.ts` | Live, in the browser |
 | Listening | [Last.fm](https://www.last.fm/api) (Spotify scrobbles to it) — `lib/lastfm.ts` | Live, in the browser, every minute |
-| Playing | `data/status.ts` | Hand-edited |
 | Status | `data/status.ts` | Hand-edited |
 
 To turn on Listening: connect Spotify at last.fm/settings/applications, create an API key at

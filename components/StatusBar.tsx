@@ -176,10 +176,6 @@ export function StatusBar() {
           </Item>
         )}
 
-        <Item label="Playing">
-          <span title={status.playing}>{status.playing}</span>
-        </Item>
-
         <Item label="Status">
           <span title={status.doing}>{status.doing}</span>
         </Item>

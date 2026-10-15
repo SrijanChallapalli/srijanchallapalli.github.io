@@ -45,7 +45,7 @@ export default async function OpenGraphImage() {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "GeistMono", fontSize: 22, color: "#57544e" }}>
           <span>srijanchallapalli.com</span>
-          <span>ChitYap · LSM engine · ApplyPilot · QoE agent</span>
+          <span>ChitYap · LSM engine · Hunch · QoE agent</span>
         </div>
       </div>
     ),
